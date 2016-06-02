@@ -1,10 +1,8 @@
 package com.donghaowxr.zhihuiwuxi;
 
 import com.donghaowxr.zhihuiwuxi.utils.PerfUtils;
-
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
