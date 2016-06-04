@@ -12,6 +12,7 @@ public class PerfUtils {
 	 * @param defValue 默认值
 	 * @return sp中boolean对应的值
 	 */
+	@SuppressWarnings("static-access")
 	public static boolean getBoolean(Context context,String key,boolean defValue){
 		SharedPreferences sp=context.getSharedPreferences("config", context.MODE_PRIVATE);
 		return sp.getBoolean(key, defValue);
@@ -22,6 +23,7 @@ public class PerfUtils {
 	 * @param key 对应的key
 	 * @param value 对应的值
 	 */
+	@SuppressWarnings("static-access")
 	public static void setBoolean(Context context,String key,boolean value){
 		SharedPreferences sp=context.getSharedPreferences("config", context.MODE_PRIVATE);
 		Editor editor=sp.edit();
