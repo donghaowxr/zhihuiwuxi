@@ -125,6 +125,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     }
     public static final class color {
         public static final int btn_guide_color_selector=0x7f080000;
+        public static final int tab_color_selector=0x7f080001;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -185,27 +186,37 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int smartservice_press=0x7f02002c;
         public static final int splash_bg_newyear=0x7f02002d;
         public static final int splash_horse_newyear=0x7f02002e;
-        public static final int title_red_bg=0x7f02002f;
-        public static final int topic_title_arr=0x7f020030;
-        public static final int topnews_item_default=0x7f020031;
-        public static final int xsearch_loading=0x7f020032;
-        public static final int xsearch_msg_pull_arrow_down=0x7f020033;
+        public static final int tab_gov_selector=0x7f02002f;
+        public static final int tab_home_selector=0x7f020030;
+        public static final int tab_news_selector=0x7f020031;
+        public static final int tab_setting_selector=0x7f020032;
+        public static final int tab_smart_selector=0x7f020033;
+        public static final int title_red_bg=0x7f020034;
+        public static final int topic_title_arr=0x7f020035;
+        public static final int topnews_item_default=0x7f020036;
+        public static final int xsearch_loading=0x7f020037;
+        public static final int xsearch_msg_pull_arrow_down=0x7f020038;
     }
     public static final class id {
-        public static final int action_settings=0x7f04000e;
+        public static final int action_settings=0x7f040013;
         public static final int btn_start=0x7f040007;
         public static final int fullscreen=0x7f040003;
         public static final int iv_point_red=0x7f040009;
         public static final int left=0x7f040001;
-        public static final int left_menu=0x7f04000c;
+        public static final int left_menu=0x7f040011;
         public static final int llParent=0x7f040008;
         public static final int main_content=0x7f04000a;
         public static final int margin=0x7f040004;
         public static final int none=0x7f040005;
+        public static final int rb_Gov=0x7f04000f;
+        public static final int rb_Home=0x7f04000c;
+        public static final int rb_News=0x7f04000d;
+        public static final int rb_Setting=0x7f040010;
+        public static final int rb_Smart=0x7f04000e;
         public static final int right=0x7f040002;
         public static final int rlRoot=0x7f04000b;
         public static final int selected_view=0x7f040000;
-        public static final int slidingmenumain=0x7f04000d;
+        public static final int slidingmenumain=0x7f040012;
         public static final int vp_guide=0x7f040006;
     }
     public static final class layout {
@@ -252,6 +263,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f070001;
+        public static final int Bottom_Tab_Style=0x7f070002;
     }
     public static final class styleable {
         /** Attributes that can be used with a SlidingMenu.
