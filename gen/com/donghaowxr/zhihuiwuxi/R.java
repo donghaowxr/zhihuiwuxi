@@ -198,8 +198,10 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int xsearch_msg_pull_arrow_down=0x7f020038;
     }
     public static final class id {
-        public static final int action_settings=0x7f040013;
+        public static final int action_settings=0x7f040016;
+        public static final int btn_Menu=0x7f040015;
         public static final int btn_start=0x7f040007;
+        public static final int fl_content=0x7f040012;
         public static final int fullscreen=0x7f040003;
         public static final int iv_point_red=0x7f040009;
         public static final int left=0x7f040001;
@@ -216,7 +218,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int right=0x7f040002;
         public static final int rlRoot=0x7f04000b;
         public static final int selected_view=0x7f040000;
-        public static final int slidingmenumain=0x7f040012;
+        public static final int slidingmenumain=0x7f040013;
+        public static final int tv_Title=0x7f040014;
         public static final int vp_guide=0x7f040006;
     }
     public static final class layout {
@@ -226,7 +229,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int fragment_content=0x7f030003;
         public static final int fragment_left_menu=0x7f030004;
         public static final int left_menu=0x7f030005;
-        public static final int slidingmenumain=0x7f030006;
+        public static final int page_base=0x7f030006;
+        public static final int slidingmenumain=0x7f030007;
+        public static final int title_bar=0x7f030008;
     }
     public static final class menu {
         public static final int main=0x7f090000;
