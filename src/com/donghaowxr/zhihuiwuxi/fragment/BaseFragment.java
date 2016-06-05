@@ -2,7 +2,6 @@ package com.donghaowxr.zhihuiwuxi.fragment;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +21,7 @@ public abstract class BaseFragment extends Fragment {
 	 */
 	@Override
 	public View onCreateView(LayoutInflater inflater,
-			@Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+			ViewGroup container, Bundle savedInstanceState) {
 		return initView();
 	}
 	/**
@@ -35,7 +34,7 @@ public abstract class BaseFragment extends Fragment {
 	 * 当fragment所在activity当onCreate之行完成之后调用
 	 */
 	@Override
-	public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		initData();
 	}

@@ -1,6 +1,8 @@
 package com.donghaowxr.zhihuiwuxi.pager;
 
+import com.donghaowxr.zhihuiwuxi.domain.NewsMenu;
 import com.donghaowxr.zhihuiwuxi.global.GlobalConfig;
+import com.google.gson.Gson;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
@@ -38,7 +40,7 @@ public class NewsPager extends BasePager {
 			@Override
 			public void onSuccess(ResponseInfo<String> responseInfo) {
 				String result=responseInfo.result;
-				System.out.println("服务器返回:"+result);
+				processData(result);
 			}
 
 			@Override
@@ -47,5 +49,11 @@ public class NewsPager extends BasePager {
 				System.out.println(msg);
 			}
 		});
+	}
+
+	protected void processData(String json) {
+		Gson gson=new Gson();
+		NewsMenu data=gson.fromJson(json, NewsMenu.class);
+		System.out.println("解析结果:"+data.retcode);
 	}
 }
