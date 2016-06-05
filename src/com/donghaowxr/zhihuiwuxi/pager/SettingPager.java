@@ -12,7 +12,7 @@ public class SettingPager extends BasePager {
 	}
 
 	@Override
-	protected void initData() {
+	public void initData() {
 		TextView view=new TextView(mActivity);
 		view.setText("设置");
 		view.setTextColor(Color.RED);
@@ -20,5 +20,7 @@ public class SettingPager extends BasePager {
 		view.setGravity(Gravity.CENTER);
 		
 		flContent.addView(view);
+		
+		tvTitle.setText("设置");
 	}
 }
