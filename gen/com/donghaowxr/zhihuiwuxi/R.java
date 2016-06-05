@@ -198,28 +198,29 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int xsearch_msg_pull_arrow_down=0x7f020038;
     }
     public static final class id {
-        public static final int action_settings=0x7f040017;
-        public static final int btn_Menu=0x7f040016;
+        public static final int action_settings=0x7f040018;
+        public static final int btn_Menu=0x7f040017;
         public static final int btn_start=0x7f040007;
-        public static final int fl_content=0x7f040013;
+        public static final int fl_content=0x7f040014;
         public static final int fullscreen=0x7f040003;
         public static final int iv_point_red=0x7f040009;
         public static final int left=0x7f040001;
-        public static final int left_menu=0x7f040012;
+        public static final int left_menu=0x7f040013;
         public static final int llParent=0x7f040008;
         public static final int main_content=0x7f04000a;
         public static final int margin=0x7f040004;
         public static final int none=0x7f040005;
-        public static final int rb_Gov=0x7f040010;
-        public static final int rb_Home=0x7f04000d;
-        public static final int rb_News=0x7f04000e;
-        public static final int rb_Setting=0x7f040011;
-        public static final int rb_Smart=0x7f04000f;
+        public static final int rb_Gov=0x7f040011;
+        public static final int rb_Home=0x7f04000e;
+        public static final int rb_News=0x7f04000f;
+        public static final int rb_Setting=0x7f040012;
+        public static final int rb_Smart=0x7f040010;
+        public static final int rg_content=0x7f04000d;
         public static final int right=0x7f040002;
         public static final int rlRoot=0x7f04000b;
         public static final int selected_view=0x7f040000;
-        public static final int slidingmenumain=0x7f040014;
-        public static final int tv_Title=0x7f040015;
+        public static final int slidingmenumain=0x7f040015;
+        public static final int tv_Title=0x7f040016;
         public static final int vp_content=0x7f04000c;
         public static final int vp_guide=0x7f040006;
     }

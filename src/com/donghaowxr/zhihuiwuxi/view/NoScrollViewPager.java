@@ -18,6 +18,9 @@ import android.view.MotionEvent;
 		// TODO Auto-generated constructor stub
 	}
 	
+	/**
+	 * 重写onTouchEvent方法，禁用掉ViewPager滑动
+	 */
 	@Override
 	public boolean onTouchEvent(MotionEvent ev) {
 		return true;
