@@ -30,4 +30,29 @@ public class PerfUtils {
 		editor.putBoolean(key, value);
 		editor.commit();
 	}
+	
+	/**
+	 * 获取String类型的值
+	 * @param context 上下文
+	 * @param key 对应的key
+	 * @return 对应的值
+	 */
+	@SuppressWarnings("static-access")
+	public static String getString(Context context,String key){
+		SharedPreferences sp=context.getSharedPreferences("config", context.MODE_PRIVATE);
+		return sp.getString(key, "");
+	}
+	/**
+	 * 设置sp文件中String的值
+	 * @param context 上下文
+	 * @param key 对应的key
+	 * @param value 对应的值
+	 */
+	@SuppressWarnings("static-access")
+	public static void setString(Context context,String key,String value){
+		SharedPreferences sp=context.getSharedPreferences("config", context.MODE_PRIVATE);
+		Editor editor=sp.edit();
+		editor.putString(key, value);
+		editor.commit();
+	}
 }
