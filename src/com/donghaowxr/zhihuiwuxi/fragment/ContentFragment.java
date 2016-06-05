@@ -2,6 +2,7 @@ package com.donghaowxr.zhihuiwuxi.fragment;
 
 import java.util.ArrayList;
 
+import com.donghaowxr.zhihuiwuxi.MainActivity;
 import com.donghaowxr.zhihuiwuxi.R;
 import com.donghaowxr.zhihuiwuxi.pager.BasePager;
 import com.donghaowxr.zhihuiwuxi.pager.GovPager;
@@ -9,6 +10,7 @@ import com.donghaowxr.zhihuiwuxi.pager.HomePager;
 import com.donghaowxr.zhihuiwuxi.pager.NewsPager;
 import com.donghaowxr.zhihuiwuxi.pager.SettingPager;
 import com.donghaowxr.zhihuiwuxi.pager.SmartPager;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -72,6 +74,11 @@ public class ContentFragment extends BaseFragment {
 			@Override
 			public void onPageSelected(int position) {
 				mPagers.get(position).initData();
+				if (position==0||position==mPagers.size()-1) {
+					setLeftMenuState(false);
+				}else {
+					setLeftMenuState(true);
+				}
 			}
 			
 			@Override
@@ -85,6 +92,16 @@ public class ContentFragment extends BaseFragment {
 		});
 		
 		mPagers.get(0).initData();//默认加载第一页
+	}
+
+	protected void setLeftMenuState(boolean b) {
+		MainActivity activity=(MainActivity)mActivity;
+		SlidingMenu slidingMenu=activity.getSlidingMenu();
+		if (b) {
+			slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);//开启侧边栏可以滑动
+		}else {
+			slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_NONE);//关闭侧边栏不可以滑动
+		}
 	}
 
 	private class ContentAdapter extends PagerAdapter{

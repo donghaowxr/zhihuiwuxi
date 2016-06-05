@@ -3,6 +3,7 @@ package com.donghaowxr.zhihuiwuxi.pager;
 import android.app.Activity;
 import android.graphics.Color;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.TextView;
 
 public class HomePager extends BasePager {
@@ -22,5 +23,6 @@ public class HomePager extends BasePager {
 		flContent.addView(view);
 		
 		tvTitle.setText("首页");
+		btnMenu.setVisibility(View.INVISIBLE);
 	}
 }
