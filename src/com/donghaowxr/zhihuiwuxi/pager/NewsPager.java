@@ -1,6 +1,8 @@
 package com.donghaowxr.zhihuiwuxi.pager;
 
+import com.donghaowxr.zhihuiwuxi.MainActivity;
 import com.donghaowxr.zhihuiwuxi.domain.NewsMenu;
+import com.donghaowxr.zhihuiwuxi.fragment.LeftMenuFragment;
 import com.donghaowxr.zhihuiwuxi.global.GlobalConfig;
 import com.donghaowxr.zhihuiwuxi.utils.CacheUtils;
 import com.google.gson.Gson;
@@ -67,6 +69,8 @@ public class NewsPager extends BasePager {
 	protected void processData(String json) {
 		Gson gson=new Gson();
 		NewsMenu data=gson.fromJson(json, NewsMenu.class);
-		System.out.println("解析结果:"+data.retcode);
+		MainActivity activity=(MainActivity) mActivity;
+		LeftMenuFragment leftMenuFragment=activity.getLeftMenuFragment();
+		leftMenuFragment.setMenuData(data.data);
 	}
 }

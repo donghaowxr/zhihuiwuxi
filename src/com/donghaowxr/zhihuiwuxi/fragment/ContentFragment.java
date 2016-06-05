@@ -92,6 +92,7 @@ public class ContentFragment extends BaseFragment {
 		});
 		
 		mPagers.get(0).initData();//默认加载第一页
+		setLeftMenuState(false);
 	}
 
 	protected void setLeftMenuState(boolean b) {

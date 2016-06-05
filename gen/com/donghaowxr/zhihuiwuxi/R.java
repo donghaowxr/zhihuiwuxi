@@ -125,7 +125,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     }
     public static final class color {
         public static final int btn_guide_color_selector=0x7f080000;
-        public static final int tab_color_selector=0x7f080001;
+        public static final int menu_color_selector=0x7f080001;
+        public static final int tab_color_selector=0x7f080002;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -167,46 +168,48 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int img_menu=0x7f020019;
         public static final int menu_arr_normal=0x7f02001a;
         public static final int menu_arr_select=0x7f02001b;
-        public static final int menu_item_bg_select=0x7f02001c;
-        public static final int news_cate_arr=0x7f02001d;
-        public static final int news_list_line=0x7f02001e;
-        public static final int news_pic_default=0x7f02001f;
-        public static final int news_tab_bg=0x7f020020;
-        public static final int news_tab_item_bg_select=0x7f020021;
-        public static final int newscenter=0x7f020022;
-        public static final int newscenter_press=0x7f020023;
-        public static final int pic_item_list_default=0x7f020024;
-        public static final int pic_list_item_bg=0x7f020025;
-        public static final int progress_dialog_bg=0x7f020026;
-        public static final int setting=0x7f020027;
-        public static final int setting_press=0x7f020028;
-        public static final int shap_point_grey=0x7f020029;
-        public static final int shape_point_red=0x7f02002a;
-        public static final int smartservice=0x7f02002b;
-        public static final int smartservice_press=0x7f02002c;
-        public static final int splash_bg_newyear=0x7f02002d;
-        public static final int splash_horse_newyear=0x7f02002e;
-        public static final int tab_gov_selector=0x7f02002f;
-        public static final int tab_home_selector=0x7f020030;
-        public static final int tab_news_selector=0x7f020031;
-        public static final int tab_setting_selector=0x7f020032;
-        public static final int tab_smart_selector=0x7f020033;
-        public static final int title_red_bg=0x7f020034;
-        public static final int topic_title_arr=0x7f020035;
-        public static final int topnews_item_default=0x7f020036;
-        public static final int xsearch_loading=0x7f020037;
-        public static final int xsearch_msg_pull_arrow_down=0x7f020038;
+        public static final int menu_drawable_selector=0x7f02001c;
+        public static final int menu_item_bg_select=0x7f02001d;
+        public static final int news_cate_arr=0x7f02001e;
+        public static final int news_list_line=0x7f02001f;
+        public static final int news_pic_default=0x7f020020;
+        public static final int news_tab_bg=0x7f020021;
+        public static final int news_tab_item_bg_select=0x7f020022;
+        public static final int newscenter=0x7f020023;
+        public static final int newscenter_press=0x7f020024;
+        public static final int pic_item_list_default=0x7f020025;
+        public static final int pic_list_item_bg=0x7f020026;
+        public static final int progress_dialog_bg=0x7f020027;
+        public static final int setting=0x7f020028;
+        public static final int setting_press=0x7f020029;
+        public static final int shap_point_grey=0x7f02002a;
+        public static final int shape_point_red=0x7f02002b;
+        public static final int smartservice=0x7f02002c;
+        public static final int smartservice_press=0x7f02002d;
+        public static final int splash_bg_newyear=0x7f02002e;
+        public static final int splash_horse_newyear=0x7f02002f;
+        public static final int tab_gov_selector=0x7f020030;
+        public static final int tab_home_selector=0x7f020031;
+        public static final int tab_news_selector=0x7f020032;
+        public static final int tab_setting_selector=0x7f020033;
+        public static final int tab_smart_selector=0x7f020034;
+        public static final int title_red_bg=0x7f020035;
+        public static final int topic_title_arr=0x7f020036;
+        public static final int topnews_item_default=0x7f020037;
+        public static final int xsearch_loading=0x7f020038;
+        public static final int xsearch_msg_pull_arrow_down=0x7f020039;
     }
     public static final class id {
-        public static final int action_settings=0x7f040018;
-        public static final int btn_Menu=0x7f040017;
+        public static final int action_settings=0x7f04001a;
+        public static final int btn_Menu=0x7f040019;
         public static final int btn_start=0x7f040007;
-        public static final int fl_content=0x7f040014;
+        public static final int fl_content=0x7f040016;
         public static final int fullscreen=0x7f040003;
         public static final int iv_point_red=0x7f040009;
         public static final int left=0x7f040001;
-        public static final int left_menu=0x7f040013;
+        public static final int left_menu=0x7f040015;
         public static final int llParent=0x7f040008;
+        public static final int lv_menu=0x7f040013;
         public static final int main_content=0x7f04000a;
         public static final int margin=0x7f040004;
         public static final int none=0x7f040005;
@@ -219,8 +222,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int right=0x7f040002;
         public static final int rlRoot=0x7f04000b;
         public static final int selected_view=0x7f040000;
-        public static final int slidingmenumain=0x7f040015;
-        public static final int tv_Title=0x7f040016;
+        public static final int slidingmenumain=0x7f040017;
+        public static final int tv_Title=0x7f040018;
+        public static final int tv_leftmenu_item=0x7f040014;
         public static final int vp_content=0x7f04000c;
         public static final int vp_guide=0x7f040006;
     }
@@ -230,10 +234,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int activity_splash=0x7f030002;
         public static final int fragment_content=0x7f030003;
         public static final int fragment_left_menu=0x7f030004;
-        public static final int left_menu=0x7f030005;
-        public static final int page_base=0x7f030006;
-        public static final int slidingmenumain=0x7f030007;
-        public static final int title_bar=0x7f030008;
+        public static final int item_leftmenu=0x7f030005;
+        public static final int left_menu=0x7f030006;
+        public static final int page_base=0x7f030007;
+        public static final int slidingmenumain=0x7f030008;
+        public static final int title_bar=0x7f030009;
     }
     public static final class menu {
         public static final int main=0x7f090000;

@@ -37,4 +37,14 @@ public class MainActivity extends SlidingFragmentActivity {
 		transaction.replace(R.id.main_content, new ContentFragment(), TAG_Content);
 		transaction.commit();//提交事务
 	}
+	
+	/**
+	 * 获取侧边栏fragment对象
+	 * @return leftmenufragment对象
+	 */
+	public LeftMenuFragment getLeftMenuFragment(){
+		FragmentManager fm=getSupportFragmentManager();
+		LeftMenuFragment fragment=(LeftMenuFragment) fm.findFragmentByTag(TAG_LeftMenu);
+		return fragment;
+	}
 }
