@@ -1,9 +1,16 @@
 package com.donghaowxr.zhihuiwuxi.pager;
 
+import java.util.ArrayList;
+
 import com.donghaowxr.zhihuiwuxi.MainActivity;
 import com.donghaowxr.zhihuiwuxi.domain.NewsMenu;
 import com.donghaowxr.zhihuiwuxi.fragment.LeftMenuFragment;
 import com.donghaowxr.zhihuiwuxi.global.GlobalConfig;
+import com.donghaowxr.zhihuiwuxi.menupager.BaseMenuDetailPager;
+import com.donghaowxr.zhihuiwuxi.menupager.InteractMenuDetailPager;
+import com.donghaowxr.zhihuiwuxi.menupager.NewsMenuDetailPager;
+import com.donghaowxr.zhihuiwuxi.menupager.PhotosMenuDetailPager;
+import com.donghaowxr.zhihuiwuxi.menupager.TopicMenuDetailPager;
 import com.donghaowxr.zhihuiwuxi.utils.CacheUtils;
 import com.google.gson.Gson;
 import com.lidroid.xutils.HttpUtils;
@@ -15,9 +22,13 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.text.TextUtils;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.TextView;
 
 public class NewsPager extends BasePager {
+
+	private ArrayList<BaseMenuDetailPager> mMenuDetailPagers;
+	private NewsMenu data;
 
 	public NewsPager(Activity activity) {
 		super(activity);
@@ -44,6 +55,9 @@ public class NewsPager extends BasePager {
 		getDataFromServer();
 	}
 
+	/**
+	 * 从服务器获取数据
+	 */
 	private void getDataFromServer() {
 		HttpUtils utils=new HttpUtils();
 		utils.send(HttpMethod.GET, GlobalConfig.CATEGORY_URL, new RequestCallBack<String>() {
@@ -68,9 +82,29 @@ public class NewsPager extends BasePager {
 	 */
 	protected void processData(String json) {
 		Gson gson=new Gson();
-		NewsMenu data=gson.fromJson(json, NewsMenu.class);
-		MainActivity activity=(MainActivity) mActivity;
-		LeftMenuFragment leftMenuFragment=activity.getLeftMenuFragment();
-		leftMenuFragment.setMenuData(data.data);
+		data = gson.fromJson(json, NewsMenu.class);
+		MainActivity activity=(MainActivity) mActivity;//获取activity对象
+		LeftMenuFragment leftMenuFragment=activity.getLeftMenuFragment();//获取leftmenufragment对象
+		leftMenuFragment.setMenuData(data.data);//设置侧边栏数据
+		leftMenuFragment.mCurentPos=0;//将当权菜单选中的位置置为0
+		
+		mMenuDetailPagers = new ArrayList<BaseMenuDetailPager>();
+		mMenuDetailPagers.add(new NewsMenuDetailPager(mActivity));
+		mMenuDetailPagers.add(new TopicMenuDetailPager(mActivity));
+		mMenuDetailPagers.add(new PhotosMenuDetailPager(mActivity));
+		mMenuDetailPagers.add(new InteractMenuDetailPager(mActivity));
+		setCurrentDetailPager(0);
+	}
+	
+	/**
+	 * 设置新闻中心当前菜单页
+	 * @param position 当前选中菜单的位置
+	 */
+	public void setCurrentDetailPager(int position){
+		BaseMenuDetailPager pager=mMenuDetailPagers.get(position);
+		View view=pager.mRootView;
+		flContent.removeAllViews();
+		flContent.addView(view);
+		tvTitle.setText(data.data.get(position).title);
 	}
 }

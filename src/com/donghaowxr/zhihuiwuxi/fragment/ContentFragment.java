@@ -134,4 +134,13 @@ public class ContentFragment extends BaseFragment {
 		}
 		
 	}
+	
+	/**
+	 * 获取新闻中心页对象
+	 * @return 新闻中心页对象
+	 */
+	public NewsPager getNewsPager(){
+		NewsPager pager=(NewsPager) mPagers.get(1);
+		return pager;
+	}
 }

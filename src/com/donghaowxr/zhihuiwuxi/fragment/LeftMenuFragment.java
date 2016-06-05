@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import com.donghaowxr.zhihuiwuxi.MainActivity;
 import com.donghaowxr.zhihuiwuxi.R;
 import com.donghaowxr.zhihuiwuxi.domain.NewsMenu.DataArray;
+import com.donghaowxr.zhihuiwuxi.pager.NewsPager;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -22,7 +23,7 @@ import android.widget.TextView;
 	private ListView lvMenu;
 	private ArrayList<DataArray>mMenuData;
 	private LeftMenuAdapter leftMenuAdapter;
-	private int mCurentPos;
+	public int mCurentPos;
 	@Override
 	public View initView() {
 		View view=View.inflate(mActivity, R.layout.fragment_left_menu, null);
@@ -35,6 +36,10 @@ import android.widget.TextView;
 
 	}
 
+	/**
+	 * 设置菜单栏数据
+	 * @param data json对象
+	 */
 	public void setMenuData(ArrayList<DataArray> data) {
 		mMenuData=data;
 		leftMenuAdapter = new LeftMenuAdapter();
@@ -47,10 +52,22 @@ import android.widget.TextView;
 				mCurentPos=position;
 				leftMenuAdapter.notifyDataSetChanged();
 				Toggle();
+				setCurrentDetailPager(position);
 			}
 		});
 	}
 	
+	/**
+	 * 设置当前菜单对应的页面
+	 * @param position 位置
+	 */
+	protected void setCurrentDetailPager(int position) {
+		MainActivity activity=(MainActivity) mActivity;//拿到activity对象
+		ContentFragment fragment=activity.getContentFragment();//拿到contentfragment对象
+		NewsPager pager=fragment.getNewsPager();//拿到新闻中心页对象
+		pager.setCurrentDetailPager(position);//设置新闻中心当前选中的菜单页
+	}
+
 	/**
 	 * 切换侧边栏状态
 	 */
