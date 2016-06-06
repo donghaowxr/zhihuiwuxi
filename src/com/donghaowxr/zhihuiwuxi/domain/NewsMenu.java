@@ -11,9 +11,9 @@ public class NewsMenu {
 		public int id;
 		public  String title;
 		public int type;
-		public ArrayList<childrenArray> children;
+		public ArrayList<ChildrenArray> children;
 		
-		public class childrenArray{
+		public class ChildrenArray{
 			public int id;
 			public String title;
 			public int type;

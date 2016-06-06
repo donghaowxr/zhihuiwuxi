@@ -89,7 +89,7 @@ public class NewsPager extends BasePager {
 		leftMenuFragment.mCurentPos=0;//将当权菜单选中的位置置为0
 		
 		mMenuDetailPagers = new ArrayList<BaseMenuDetailPager>();
-		mMenuDetailPagers.add(new NewsMenuDetailPager(mActivity));
+		mMenuDetailPagers.add(new NewsMenuDetailPager(mActivity,data.data.get(0).children));
 		mMenuDetailPagers.add(new TopicMenuDetailPager(mActivity));
 		mMenuDetailPagers.add(new PhotosMenuDetailPager(mActivity));
 		mMenuDetailPagers.add(new InteractMenuDetailPager(mActivity));
@@ -106,5 +106,6 @@ public class NewsPager extends BasePager {
 		flContent.removeAllViews();
 		flContent.addView(view);
 		tvTitle.setText(data.data.get(position).title);
+		pager.initData();
 	}
 }

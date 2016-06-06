@@ -17,7 +17,7 @@ public abstract class BaseMenuDetailPager {
 	 * @return 布局View对象
 	 */
 	protected abstract View initView();
-	protected void initData(){
+	public void initData(){
 		
 	}
 }
