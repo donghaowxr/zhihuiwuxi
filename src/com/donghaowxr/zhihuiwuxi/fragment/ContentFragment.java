@@ -74,7 +74,7 @@ public class ContentFragment extends BaseFragment {
 			@Override
 			public void onPageSelected(int position) {
 				mPagers.get(position).initData();
-				if (position==0||position==mPagers.size()-1) {
+				if (position==0||position==mPagers.size()-1||position==1) {
 					setLeftMenuState(false);
 				}else {
 					setLeftMenuState(true);

@@ -25,5 +25,10 @@ import android.view.MotionEvent;
 	public boolean onTouchEvent(MotionEvent ev) {
 		return true;
 	}
+	
+	@Override
+	public boolean onInterceptTouchEvent(MotionEvent ev) {
+		return false;//不拦截子控件的滑动事件
+	}
 
 }
