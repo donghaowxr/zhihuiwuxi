@@ -95,7 +95,7 @@ public class ContentFragment extends BaseFragment {
 		setLeftMenuState(false);
 	}
 
-	protected void setLeftMenuState(boolean b) {
+	public void setLeftMenuState(boolean b) {
 		MainActivity activity=(MainActivity)mActivity;
 		SlidingMenu slidingMenu=activity.getSlidingMenu();
 		if (b) {

@@ -105,7 +105,8 @@ public class NewsPager extends BasePager {
 		View view=pager.mRootView;
 		flContent.removeAllViews();
 		flContent.addView(view);
-		tvTitle.setText(data.data.get(position).title);
 		pager.initData();
+		tvTitle.setText(data.data.get(position).title);
+		
 	}
 }

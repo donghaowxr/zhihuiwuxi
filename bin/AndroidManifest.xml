@@ -26,7 +26,8 @@
             </intent-filter>
         </activity>
         <activity android:name="com.donghaowxr.zhihuiwuxi.GuideActivity"></activity>
-        <activity android:name="com.donghaowxr.zhihuiwuxi.MainActivity"></activity>
+        <activity android:name="com.donghaowxr.zhihuiwuxi.MainActivity"
+            android:theme="@style/Theme.PageIndicatorDefaults"></activity>
     </application>
 
 </manifest>
