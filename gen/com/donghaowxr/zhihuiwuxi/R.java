@@ -532,9 +532,10 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int xsearch_msg_pull_arrow_down=0x7f020040;
     }
     public static final class id {
-        public static final int action_settings=0x7f090020;
+        public static final int action_settings=0x7f090021;
         public static final int bottom=0x7f090004;
-        public static final int btn_Menu=0x7f09001f;
+        public static final int btn_Menu=0x7f090020;
+        public static final int btn_next=0x7f09001c;
         public static final int btn_start=0x7f09000b;
         public static final int fl_content=0x7f09001a;
         public static final int fullscreen=0x7f090008;
@@ -556,15 +557,15 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int right=0x7f090007;
         public static final int rlRoot=0x7f09000f;
         public static final int selected_view=0x7f090000;
-        public static final int slidingmenumain=0x7f09001d;
+        public static final int slidingmenumain=0x7f09001e;
         public static final int top=0x7f090005;
         public static final int triangle=0x7f090002;
-        public static final int tv_Title=0x7f09001e;
+        public static final int tv_Title=0x7f09001f;
         public static final int tv_leftmenu_item=0x7f090018;
         public static final int underline=0x7f090003;
         public static final int vp_content=0x7f090010;
         public static final int vp_guide=0x7f09000a;
-        public static final int vp_news_menu_detail=0x7f09001c;
+        public static final int vp_news_menu_detail=0x7f09001d;
     }
     public static final class integer {
         public static final int default_circle_indicator_orientation=0x7f060000;

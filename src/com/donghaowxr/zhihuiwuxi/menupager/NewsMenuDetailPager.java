@@ -7,6 +7,7 @@ import com.donghaowxr.zhihuiwuxi.domain.NewsMenu.DataArray.ChildrenArray;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.viewpagerindicator.TabPageIndicator;
 import android.app.Activity;
 import android.support.v4.view.PagerAdapter;
@@ -114,6 +115,13 @@ public class NewsMenuDetailPager extends BaseMenuDetailPager implements OnPageCh
 		}else {
 			slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_NONE);//关闭侧边栏不可以滑动
 		}
+	}
+	
+	@OnClick(R.id.btn_next)
+	private void nextPage(View view){
+		int currentItem=mViewPager.getCurrentItem();
+		currentItem++;
+		mViewPager.setCurrentItem(currentItem);
 	}
 
 }
