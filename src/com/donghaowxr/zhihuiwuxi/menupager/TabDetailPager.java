@@ -170,14 +170,19 @@ public class TabDetailPager extends BaseMenuDetailPager {
 	}
 	
 	class NewsAdapter extends BaseAdapter{
+		private BitmapUtils bitmapUtils;
 
+		public NewsAdapter() {
+			bitmapUtils = new BitmapUtils(mActivity);
+			bitmapUtils.configDefaultLoadingImage(R.drawable.news_pic_default);
+		}
 		@Override
 		public int getCount() {
 			return mNewList.size();
 		}
 
 		@Override
-		public Object getItem(int position) {
+		public TabNews getItem(int position) {
 			return mNewList.get(position);
 		}
 
@@ -188,12 +193,33 @@ public class TabDetailPager extends BaseMenuDetailPager {
 
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
-			if (convertView!=null) {
-				
+			ViewHolder holder;
+			if (convertView==null) {
+				convertView=View.inflate(mActivity, R.layout.list_item_news, null);
+				holder = new ViewHolder();
+				holder.ivIcon=(ImageView) convertView.findViewById(R.id.iv_icon);
+				holder.tvTitle=(TextView) convertView.findViewById(R.id.tv_news_title);
+				holder.tvDate=(TextView) convertView.findViewById(R.id.tv_date);
+				convertView.setTag(holder);
+			}else {
+				holder=(ViewHolder) convertView.getTag();
 			}
-			return null;
+			TabNews news=getItem(position);
+			holder.tvTitle.setText(news.title);
+			holder.tvDate.setText(news.pubdate);
+			String newsUrl=news.listimage;
+			newsUrl=newsUrl.substring(25, newsUrl.length());
+			newsUrl=GlobalConfig.SERVER_URL+newsUrl;
+			bitmapUtils.display(holder.ivIcon, newsUrl);
+			return convertView;
 		}
 		
+	}
+	
+	static class ViewHolder{
+		public ImageView ivIcon;
+		public TextView tvTitle;
+		public TextView tvDate;
 	}
 
 }
