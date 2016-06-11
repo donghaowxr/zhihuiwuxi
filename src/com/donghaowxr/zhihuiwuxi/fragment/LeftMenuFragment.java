@@ -76,25 +76,26 @@ import android.widget.TextView;
 		SlidingMenu slidingMenu=activity.getSlidingMenu();
 		slidingMenu.toggle();
 	}
-
+	
 	private class LeftMenuAdapter extends BaseAdapter{
+
 		@Override
 		public int getCount() {
 			return mMenuData.size();
 		}
 
 		@Override
-		public Object getItem(int arg0) {
-			return mMenuData.get(arg0);
+		public Object getItem(int position) {
+			return mMenuData.get(position);
 		}
 
 		@Override
-		public long getItemId(int arg0) {
-			return arg0;
+		public long getItemId(int position) {
+			return position;
 		}
 
 		@Override
-		public View getView(int position, View arg1, ViewGroup arg2) {
+		public View getView(int position, View convertView, ViewGroup parent) {
 			View view=View.inflate(mActivity, R.layout.item_leftmenu, null);
 			TextView tvLeftMenuItem=(TextView) view.findViewById(R.id.tv_leftmenu_item);
 			DataArray item=mMenuData.get(position);
@@ -108,5 +109,4 @@ import android.widget.TextView;
 		}
 		
 	}
-
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import com.donghaowxr.zhihuiwuxi.R;
 import com.donghaowxr.zhihuiwuxi.domain.NewsMenu.DataArray.ChildrenArray;
 import com.donghaowxr.zhihuiwuxi.domain.NewsTabBean;
+import com.donghaowxr.zhihuiwuxi.domain.NewsTabBean.TabData.TabNews;
 import com.donghaowxr.zhihuiwuxi.domain.NewsTabBean.TabData.TopNews;
 import com.donghaowxr.zhihuiwuxi.global.GlobalConfig;
 import com.donghaowxr.zhihuiwuxi.utils.CacheUtils;
@@ -25,7 +26,9 @@ import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.ImageView.ScaleType;
 
@@ -37,10 +40,13 @@ public class TabDetailPager extends BaseMenuDetailPager {
 	private TextView tvTitle;
 	@ViewInject(R.id.indicator)
 	private CirclePageIndicator mIndicator;
+	@ViewInject(R.id.lv_list)
+	private ListView lvList;
 	private ChildrenArray mTabData;
 	private String topNewsUrl;
 	private NewsTabBean dataBean;
 	private ArrayList<TopNews> topNews;
+	private ArrayList<TabNews> mNewList;
 
 	public TabDetailPager(Activity activity, ChildrenArray childrenArray) {
 		super(activity);
@@ -120,6 +126,11 @@ public class TabDetailPager extends BaseMenuDetailPager {
 			tvTitle.setText(topNews.get(0).title);
 			mIndicator.onPageSelected(0);//默认页面初始化是第一个指示器被选中
 		}
+		mNewList = dataBean.data.news;
+		if (mNewList!=null) {
+			NewsAdapter mNewAdapter=new NewsAdapter();
+			lvList.setAdapter(mNewAdapter);
+		}
 	}
 
 	class TopNewAdapter extends PagerAdapter{
@@ -155,6 +166,32 @@ public class TabDetailPager extends BaseMenuDetailPager {
 		@Override
 		public void destroyItem(ViewGroup container, int position, Object object) {
 			container.removeView((View) object);
+		}
+	}
+	
+	class NewsAdapter extends BaseAdapter{
+
+		@Override
+		public int getCount() {
+			return mNewList.size();
+		}
+
+		@Override
+		public Object getItem(int position) {
+			return mNewList.get(position);
+		}
+
+		@Override
+		public long getItemId(int position) {
+			return position;
+		}
+
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			if (convertView!=null) {
+				
+			}
+			return null;
 		}
 		
 	}
