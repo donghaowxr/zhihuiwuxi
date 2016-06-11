@@ -6,6 +6,7 @@ import com.donghaowxr.zhihuiwuxi.domain.NewsMenu.DataArray.ChildrenArray;
 import com.donghaowxr.zhihuiwuxi.domain.NewsTabBean;
 import com.donghaowxr.zhihuiwuxi.domain.NewsTabBean.TabData.TopNews;
 import com.donghaowxr.zhihuiwuxi.global.GlobalConfig;
+import com.donghaowxr.zhihuiwuxi.utils.CacheUtils;
 import com.donghaowxr.zhihuiwuxi.view.TopNewsViewPager;
 import com.google.gson.Gson;
 import com.lidroid.xutils.BitmapUtils;
@@ -18,15 +19,20 @@ import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import android.app.Activity;
 import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.ImageView.ScaleType;
 
 public class TabDetailPager extends BaseMenuDetailPager {
 
 	@ViewInject(R.id.vp_top_news)
 	private TopNewsViewPager vpTopNews;
+	@ViewInject(R.id.tv_title)
+	private TextView tvTitle;
 	private ChildrenArray mTabData;
 	private String topNewsUrl;
 	private NewsTabBean dataBean;
@@ -53,7 +59,10 @@ public class TabDetailPager extends BaseMenuDetailPager {
 	 */
 	@Override
 	public void initData() {
-		
+		String cacheJson=CacheUtils.getCache(topNewsUrl, mActivity);
+		if (!TextUtils.isEmpty(cacheJson)) {
+			processData(cacheJson);
+		}
 		getDataFromServer();
 	}
 	
@@ -67,6 +76,7 @@ public class TabDetailPager extends BaseMenuDetailPager {
 			@Override
 			public void onSuccess(ResponseInfo<String> responseInfo) {
 				String result=responseInfo.result;
+				CacheUtils.setCache(topNewsUrl, result, mActivity);
 				processData(result);
 			}
 
@@ -88,6 +98,20 @@ public class TabDetailPager extends BaseMenuDetailPager {
 		topNews = dataBean.data.topnews;
 		if (topNews!=null) {
 			vpTopNews.setAdapter(new TopNewAdapter());
+			vpTopNews.setOnPageChangeListener(new OnPageChangeListener() {
+				@Override
+				public void onPageSelected(int position) {
+					tvTitle.setText(topNews.get(position).title);
+				}
+				@Override
+				public void onPageScrolled(int position, float positionOffset,
+						int positionOffsetPixels) {
+				}
+				@Override
+				public void onPageScrollStateChanged(int state) {
+				}
+			});
+			tvTitle.setText(topNews.get(0).title);
 		}
 	}
 
@@ -108,7 +132,7 @@ public class TabDetailPager extends BaseMenuDetailPager {
 		@Override
 		public Object instantiateItem(ViewGroup container, int position) {
 			ImageView view=new ImageView(mActivity);
-			view.setBackgroundResource(R.drawable.topnews_item_default);
+//			view.setBackgroundResource(R.drawable.topnews_item_default);
 			view.setScaleType(ScaleType.FIT_XY);
 			String imageUrl=topNews.get(position).topimage;
 			imageUrl=imageUrl.substring(25, imageUrl.length());
@@ -116,6 +140,7 @@ public class TabDetailPager extends BaseMenuDetailPager {
 			//下载图片，设置给ImageView
 			//使用BitmapUtils
 			bitmapUtils.display(view, imageUrl);
+			bitmapUtils.configDefaultLoadingImage(R.drawable.topnews_item_default);//BitmapUtils设置默认图片
 			
 			container.addView(view);
 			return view;

@@ -150,9 +150,9 @@ int drawable vpi__tab_unselected_holo 0x7f02003d
 int drawable vpi__tab_unselected_pressed_holo 0x7f02003e
 int drawable xsearch_loading 0x7f02003f
 int drawable xsearch_msg_pull_arrow_down 0x7f020040
-int id action_settings 0x7f090022
+int id action_settings 0x7f090023
 int id bottom 0x7f090004
-int id btn_Menu 0x7f090021
+int id btn_Menu 0x7f090022
 int id btn_next 0x7f09001c
 int id btn_start 0x7f09000b
 int id fl_content 0x7f09001a
@@ -175,11 +175,12 @@ int id rg_content 0x7f090011
 int id right 0x7f090007
 int id rlRoot 0x7f09000f
 int id selected_view 0x7f090000
-int id slidingmenumain 0x7f09001f
+int id slidingmenumain 0x7f090020
 int id top 0x7f090005
 int id triangle 0x7f090002
-int id tv_Title 0x7f090020
+int id tv_Title 0x7f090021
 int id tv_leftmenu_item 0x7f090018
+int id tv_title 0x7f09001f
 int id underline 0x7f090003
 int id vp_content 0x7f090010
 int id vp_guide 0x7f09000a
