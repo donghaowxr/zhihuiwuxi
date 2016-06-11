@@ -17,6 +17,8 @@ import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.viewpagerindicator.CirclePageIndicator;
+
 import android.app.Activity;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
@@ -33,6 +35,8 @@ public class TabDetailPager extends BaseMenuDetailPager {
 	private TopNewsViewPager vpTopNews;
 	@ViewInject(R.id.tv_title)
 	private TextView tvTitle;
+	@ViewInject(R.id.indicator)
+	private CirclePageIndicator mIndicator;
 	private ChildrenArray mTabData;
 	private String topNewsUrl;
 	private NewsTabBean dataBean;
@@ -98,7 +102,9 @@ public class TabDetailPager extends BaseMenuDetailPager {
 		topNews = dataBean.data.topnews;
 		if (topNews!=null) {
 			vpTopNews.setAdapter(new TopNewAdapter());
-			vpTopNews.setOnPageChangeListener(new OnPageChangeListener() {
+			mIndicator.setViewPager(vpTopNews);
+			mIndicator.setSnap(true);
+			mIndicator.setOnPageChangeListener(new OnPageChangeListener() {
 				@Override
 				public void onPageSelected(int position) {
 					tvTitle.setText(topNews.get(position).title);
@@ -112,6 +118,7 @@ public class TabDetailPager extends BaseMenuDetailPager {
 				}
 			});
 			tvTitle.setText(topNews.get(0).title);
+			mIndicator.onPageSelected(0);//默认页面初始化是第一个指示器被选中
 		}
 	}
 
