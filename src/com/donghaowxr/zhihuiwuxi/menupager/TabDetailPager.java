@@ -61,6 +61,9 @@ public class TabDetailPager extends BaseMenuDetailPager {
 	protected View initView() {
 		View view=View.inflate(mActivity, R.layout.pager_tab_detail, null);
 		ViewUtils.inject(this, view);
+		View mHeaderView=View.inflate(mActivity, R.layout.list_item_header, null);
+		ViewUtils.inject(this, mHeaderView);
+		lvList.addHeaderView(mHeaderView);
 		return view;
 	}
 	
