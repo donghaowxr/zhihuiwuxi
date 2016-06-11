@@ -1,10 +1,14 @@
 package com.donghaowxr.zhihuiwuxi.menupager;
 
+import java.util.ArrayList;
 import com.donghaowxr.zhihuiwuxi.R;
 import com.donghaowxr.zhihuiwuxi.domain.NewsMenu.DataArray.ChildrenArray;
 import com.donghaowxr.zhihuiwuxi.domain.NewsTabBean;
+import com.donghaowxr.zhihuiwuxi.domain.NewsTabBean.TabData.TopNews;
 import com.donghaowxr.zhihuiwuxi.global.GlobalConfig;
+import com.donghaowxr.zhihuiwuxi.view.TopNewsViewPager;
 import com.google.gson.Gson;
+import com.lidroid.xutils.BitmapUtils;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.exception.HttpException;
@@ -14,17 +18,19 @@ import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import android.app.Activity;
 import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 
 public class TabDetailPager extends BaseMenuDetailPager {
 
 	@ViewInject(R.id.vp_top_news)
-	private ViewPager vpTopNews;
+	private TopNewsViewPager vpTopNews;
 	private ChildrenArray mTabData;
 	private String topNewsUrl;
 	private NewsTabBean dataBean;
+	private ArrayList<TopNews> topNews;
 
 	public TabDetailPager(Activity activity, ChildrenArray childrenArray) {
 		super(activity);
@@ -47,6 +53,7 @@ public class TabDetailPager extends BaseMenuDetailPager {
 	 */
 	@Override
 	public void initData() {
+		
 		getDataFromServer();
 	}
 	
@@ -78,13 +85,20 @@ public class TabDetailPager extends BaseMenuDetailPager {
 	protected void processData(String result) {
 		Gson gson=new Gson();
 		dataBean = gson.fromJson(result, NewsTabBean.class);
+		topNews = dataBean.data.topnews;
+		if (topNews!=null) {
+			vpTopNews.setAdapter(new TopNewAdapter());
+		}
 	}
 
 	class TopNewAdapter extends PagerAdapter{
-
+		private BitmapUtils bitmapUtils;
+		public TopNewAdapter() {
+			bitmapUtils = new BitmapUtils(mActivity);
+		}
 		@Override
 		public int getCount() {
-			return 0;
+			return topNews.size();
 		}
 
 		@Override
@@ -93,7 +107,18 @@ public class TabDetailPager extends BaseMenuDetailPager {
 		}
 		@Override
 		public Object instantiateItem(ViewGroup container, int position) {
-			return super.instantiateItem(container, position);
+			ImageView view=new ImageView(mActivity);
+			view.setBackgroundResource(R.drawable.topnews_item_default);
+			view.setScaleType(ScaleType.FIT_XY);
+			String imageUrl=topNews.get(position).topimage;
+			imageUrl=imageUrl.substring(25, imageUrl.length());
+			imageUrl=GlobalConfig.SERVER_URL+imageUrl;
+			//下载图片，设置给ImageView
+			//使用BitmapUtils
+			bitmapUtils.display(view, imageUrl);
+			
+			container.addView(view);
+			return view;
 		}
 		@Override
 		public void destroyItem(ViewGroup container, int position, Object object) {
