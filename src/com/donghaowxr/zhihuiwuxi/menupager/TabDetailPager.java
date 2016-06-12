@@ -8,6 +8,8 @@ import com.donghaowxr.zhihuiwuxi.domain.NewsTabBean.TabData.TabNews;
 import com.donghaowxr.zhihuiwuxi.domain.NewsTabBean.TabData.TopNews;
 import com.donghaowxr.zhihuiwuxi.global.GlobalConfig;
 import com.donghaowxr.zhihuiwuxi.utils.CacheUtils;
+import com.donghaowxr.zhihuiwuxi.view.PullToRefreshListView;
+import com.donghaowxr.zhihuiwuxi.view.PullToRefreshListView.OnRefreshListener;
 import com.donghaowxr.zhihuiwuxi.view.TopNewsViewPager;
 import com.google.gson.Gson;
 import com.lidroid.xutils.BitmapUtils;
@@ -19,7 +21,6 @@ import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.viewpagerindicator.CirclePageIndicator;
-
 import android.app.Activity;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
@@ -28,7 +29,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.ImageView.ScaleType;
 
@@ -41,7 +41,7 @@ public class TabDetailPager extends BaseMenuDetailPager {
 	@ViewInject(R.id.indicator)
 	private CirclePageIndicator mIndicator;
 	@ViewInject(R.id.lv_list)
-	private ListView lvList;
+	private PullToRefreshListView lvList;
 	private ChildrenArray mTabData;
 	private String topNewsUrl;
 	private NewsTabBean dataBean;
@@ -90,6 +90,7 @@ public class TabDetailPager extends BaseMenuDetailPager {
 			public void onSuccess(ResponseInfo<String> responseInfo) {
 				String result=responseInfo.result;
 				CacheUtils.setCache(topNewsUrl, result, mActivity);
+				lvList.setRefreshComplete(true);
 				processData(result);
 			}
 
@@ -97,6 +98,7 @@ public class TabDetailPager extends BaseMenuDetailPager {
 			public void onFailure(HttpException error, String msg) {
 				error.printStackTrace();
 				System.out.println(msg);
+				lvList.setRefreshComplete(false);
 			}
 		});
 	}
@@ -133,6 +135,12 @@ public class TabDetailPager extends BaseMenuDetailPager {
 		if (mNewList!=null) {
 			NewsAdapter mNewAdapter=new NewsAdapter();
 			lvList.setAdapter(mNewAdapter);
+			lvList.setOnRefreshListener(new OnRefreshListener() {
+				@Override
+				public void onRefresh() {
+					getDataFromServer();
+				}
+			});
 		}
 	}
 
