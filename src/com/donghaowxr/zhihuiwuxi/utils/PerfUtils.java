@@ -38,9 +38,9 @@ public class PerfUtils {
 	 * @return 对应的值
 	 */
 	@SuppressWarnings("static-access")
-	public static String getString(Context context,String key){
+	public static String getString(Context context,String key,String defValue){
 		SharedPreferences sp=context.getSharedPreferences("config", context.MODE_PRIVATE);
-		return sp.getString(key, "");
+		return sp.getString(key, defValue);
 	}
 	/**
 	 * 设置sp文件中String的值

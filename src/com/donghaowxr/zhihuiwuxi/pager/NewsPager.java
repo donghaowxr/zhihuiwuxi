@@ -46,7 +46,7 @@ public class NewsPager extends BasePager {
 		
 		tvTitle.setText("新闻中心");
 		
-		String cacheJson=CacheUtils.getCache(GlobalConfig.CATEGORY_URL, mActivity);
+		String cacheJson=CacheUtils.getCache(GlobalConfig.CATEGORY_URL, mActivity,"");
 		if (!TextUtils.isEmpty(cacheJson)) {
 			System.out.println("从缓存中读取数据");
 			processData(cacheJson);

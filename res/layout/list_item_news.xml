@@ -20,10 +20,10 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/iv_icon"
         android:layout_alignParentTop="true"
+        android:textColor="#000"
         android:maxLines="2"
         android:ellipsize="end"
         android:textSize="18sp"
-        android:textColor="#000"
         android:text="洛杉矶氮磷钾肥垃圾地方就来饿哦文化宫 i 和我哥喝哦为共和国 i 哦温哥华将佛啊大家发 i 俄回复 i 哦个" />
     
     <TextView

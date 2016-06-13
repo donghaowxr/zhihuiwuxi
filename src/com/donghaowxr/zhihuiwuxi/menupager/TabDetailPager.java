@@ -8,6 +8,7 @@ import com.donghaowxr.zhihuiwuxi.domain.NewsTabBean.TabData.TabNews;
 import com.donghaowxr.zhihuiwuxi.domain.NewsTabBean.TabData.TopNews;
 import com.donghaowxr.zhihuiwuxi.global.GlobalConfig;
 import com.donghaowxr.zhihuiwuxi.utils.CacheUtils;
+import com.donghaowxr.zhihuiwuxi.utils.PerfUtils;
 import com.donghaowxr.zhihuiwuxi.view.PullToRefreshListView;
 import com.donghaowxr.zhihuiwuxi.view.PullToRefreshListView.OnRefreshListener;
 import com.donghaowxr.zhihuiwuxi.view.TopNewsViewPager;
@@ -22,11 +23,14 @@ import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.viewpagerindicator.CirclePageIndicator;
 import android.app.Activity;
+import android.graphics.Color;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -82,6 +86,21 @@ public class TabDetailPager extends BaseMenuDetailPager {
 				}
 			}
 		});
+		lvList.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				int itemPosition=position-lvList.getHeaderViewsCount();//当前位置需要去掉头布局个数
+				String ids=PerfUtils.getString(mActivity, "read_ids", "");
+				int currentId=mNewList.get(itemPosition).id;
+				if (!ids.contains(String.valueOf(currentId))) {
+					ids=ids+currentId+",";
+					PerfUtils.setString(mActivity, "read_ids", ids);
+				}
+				TextView tvTitle=(TextView) view.findViewById(R.id.tv_news_title);
+				tvTitle.setTextColor(Color.GRAY);
+			}
+		});
 		return view;
 	}
 	
@@ -90,7 +109,7 @@ public class TabDetailPager extends BaseMenuDetailPager {
 	 */
 	@Override
 	public void initData() {
-		String cacheJson=CacheUtils.getCache(topNewsUrl, mActivity);
+		String cacheJson=CacheUtils.getCache(topNewsUrl, mActivity,"");
 		if (!TextUtils.isEmpty(cacheJson)) {
 			processData(cacheJson,false);
 		}
@@ -149,12 +168,10 @@ public class TabDetailPager extends BaseMenuDetailPager {
 	 * @param result json数据
 	 */
 	protected void processData(String result,boolean isMore) {
-		
 		Gson gson=new Gson();
 		dataBean = gson.fromJson(result, NewsTabBean.class);
 		more = dataBean.data.more;
 		if (!isMore) {
-			System.out.println(isMore);
 			topNews = dataBean.data.topnews;
 			if (topNews!=null) {
 				vpTopNews.setAdapter(new TopNewAdapter());
@@ -261,8 +278,15 @@ public class TabDetailPager extends BaseMenuDetailPager {
 				holder=(ViewHolder) convertView.getTag();
 			}
 			TabNews news=getItem(position);
+			String ids=PerfUtils.getString(mActivity, "read_ids", "");
+			if (ids.contains(String.valueOf(news.id))) {
+				holder.tvTitle.setTextColor(Color.GRAY);
+			}else {
+				holder.tvTitle.setTextColor(Color.BLACK);
+			}
 			holder.tvTitle.setText(news.title);
 			holder.tvDate.setText(news.pubdate);
+			
 			String newsUrl=news.listimage;
 			newsUrl=newsUrl.substring(25, newsUrl.length());
 			newsUrl=GlobalConfig.SERVER_URL+newsUrl;

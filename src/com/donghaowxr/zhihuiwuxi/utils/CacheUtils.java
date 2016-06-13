@@ -19,7 +19,7 @@ public class CacheUtils {
 	 * @param context 上下文
 	 * @return 链接对应的json数据
 	 */
-	public static String getCache(String url,Context context){
-		return PerfUtils.getString(context, url);
+	public static String getCache(String url,Context context,String defValue){
+		return PerfUtils.getString(context, url,defValue);
 	}
 }
