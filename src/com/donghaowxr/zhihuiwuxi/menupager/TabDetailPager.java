@@ -140,6 +140,11 @@ public class TabDetailPager extends BaseMenuDetailPager {
 				public void onRefresh() {
 					getDataFromServer();
 				}
+
+				@Override
+				public void onLoadMore() {
+					
+				}
 			});
 		}
 	}

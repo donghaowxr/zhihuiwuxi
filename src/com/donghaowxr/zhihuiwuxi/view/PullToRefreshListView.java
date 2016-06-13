@@ -2,9 +2,7 @@ package com.donghaowxr.zhihuiwuxi.view;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import com.donghaowxr.zhihuiwuxi.R;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.AttributeSet;
@@ -12,12 +10,14 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
+import android.widget.AbsListView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.AbsListView.OnScrollListener;
 
-@SuppressLint({ "ClickableViewAccessibility", "SimpleDateFormat" }) public class PullToRefreshListView extends ListView {
+@SuppressLint({ "ClickableViewAccessibility", "SimpleDateFormat" }) public class PullToRefreshListView extends ListView implements OnScrollListener {
 
 	private View headerView;
 	private int measureHeight;
@@ -35,21 +35,27 @@ import android.widget.TextView;
 	private RotateAnimation upAnimation;
 	private RotateAnimation downAnimation;
 	private OnRefreshListener onRefreshListener;
+	private View footView;
+	private int footMeasureHeight;
+	private boolean isScroll=true;
 
 	public PullToRefreshListView(Context context, AttributeSet attrs,
 			int defStyle) {
 		super(context, attrs, defStyle);
 		initHeaderView();
+		initFootView();
 	}
 
 	public PullToRefreshListView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		initHeaderView();
+		initFootView();
 	}
 
 	public PullToRefreshListView(Context context) {
 		super(context);
 		initHeaderView();
+		initFootView();
 	}
 	
 	/**
@@ -67,6 +73,18 @@ import android.widget.TextView;
 		headerView.setPadding(0, -measureHeight, 0, 0);
 		refreshTime();
 		initAmin();
+	}
+	
+	/**
+	 * 初始化脚布局
+	 */
+	private void initFootView() {
+		footView = View.inflate(getContext(), R.layout.foot_to_more, null);
+		addFooterView(footView);
+		footView.measure(0, 0);
+		footMeasureHeight = footView.getMeasuredHeight();
+		footView.setPadding(0, -footMeasureHeight, 0, 0);
+		this.setOnScrollListener(this);
 	}
 	
 	/**
@@ -181,6 +199,32 @@ import android.widget.TextView;
 	
 	public interface OnRefreshListener{
 		void onRefresh();
+		void onLoadMore();
+	}
+
+	/**
+	 * 当滑动状态变化时
+	 */
+	@Override
+	public void onScrollStateChanged(AbsListView view, int scrollState) {
+		if (scrollState==SCROLL_STATE_IDLE) {//当滑动状态为空闲时
+			int currentPosition=getLastVisiblePosition();
+			if (currentPosition==getCount()-1) {
+				if (isScroll) {
+					isScroll=false;
+					footView.setPadding(0, 0, 0, 0);
+					setSelection(getCount()-1);
+					if (onRefreshListener!=null) {
+						onRefreshListener.onLoadMore();
+					}
+				}
+			}
+		}
+	}
+
+	@Override
+	public void onScroll(AbsListView view, int firstVisibleItem,
+			int visibleItemCount, int totalItemCount) {
 	}
 
 }
