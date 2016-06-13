@@ -30,6 +30,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ImageView.ScaleType;
 
 public class TabDetailPager extends BaseMenuDetailPager {
@@ -47,6 +48,7 @@ public class TabDetailPager extends BaseMenuDetailPager {
 	private NewsTabBean dataBean;
 	private ArrayList<TopNews> topNews;
 	private ArrayList<TabNews> mNewList;
+	private String more;
 
 	public TabDetailPager(Activity activity, ChildrenArray childrenArray) {
 		super(activity);
@@ -64,6 +66,22 @@ public class TabDetailPager extends BaseMenuDetailPager {
 		View mHeaderView=View.inflate(mActivity, R.layout.list_item_header, null);
 		ViewUtils.inject(this, mHeaderView);
 		lvList.addHeaderView(mHeaderView);
+		lvList.setOnRefreshListener(new OnRefreshListener() {
+			@Override
+			public void onRefresh() {
+				getDataFromServer();
+			}
+
+			@Override
+			public void onLoadMore() {
+				if (!TextUtils.isEmpty(more)) {
+					getMoreDataFromServer();
+				}else {
+					Toast.makeText(mActivity, "没有更多数据了", Toast.LENGTH_SHORT).show();
+					lvList.setRefreshComplete(false);
+				}
+			}
+		});
 		return view;
 	}
 	
@@ -74,7 +92,7 @@ public class TabDetailPager extends BaseMenuDetailPager {
 	public void initData() {
 		String cacheJson=CacheUtils.getCache(topNewsUrl, mActivity);
 		if (!TextUtils.isEmpty(cacheJson)) {
-			processData(cacheJson);
+			processData(cacheJson,false);
 		}
 		getDataFromServer();
 	}
@@ -91,7 +109,30 @@ public class TabDetailPager extends BaseMenuDetailPager {
 				String result=responseInfo.result;
 				CacheUtils.setCache(topNewsUrl, result, mActivity);
 				lvList.setRefreshComplete(true);
-				processData(result);
+				processData(result,false);
+			}
+
+			@Override
+			public void onFailure(HttpException error, String msg) {
+				error.printStackTrace();
+				System.out.println(msg);
+				lvList.setRefreshComplete(false);
+			}
+		});
+	}
+	
+	/**
+	 * 请求网络加载更多
+	 */
+	protected void getMoreDataFromServer() {
+		HttpUtils utils=new HttpUtils();
+		utils.send(HttpMethod.GET, GlobalConfig.SERVER_URL+more, new RequestCallBack<String>() {
+
+			@Override
+			public void onSuccess(ResponseInfo<String> responseInfo) {
+				String result=responseInfo.result;
+				processData(result,true);
+				lvList.setRefreshComplete(true);
 			}
 
 			@Override
@@ -107,47 +148,46 @@ public class TabDetailPager extends BaseMenuDetailPager {
 	 * 解析服务器返回json数据
 	 * @param result json数据
 	 */
-	protected void processData(String result) {
+	protected void processData(String result,boolean isMore) {
+		
 		Gson gson=new Gson();
 		dataBean = gson.fromJson(result, NewsTabBean.class);
-		topNews = dataBean.data.topnews;
-		if (topNews!=null) {
-			vpTopNews.setAdapter(new TopNewAdapter());
-			mIndicator.setViewPager(vpTopNews);
-			mIndicator.setSnap(true);
-			mIndicator.setOnPageChangeListener(new OnPageChangeListener() {
-				@Override
-				public void onPageSelected(int position) {
-					tvTitle.setText(topNews.get(position).title);
-				}
-				@Override
-				public void onPageScrolled(int position, float positionOffset,
-						int positionOffsetPixels) {
-				}
-				@Override
-				public void onPageScrollStateChanged(int state) {
-				}
-			});
-			tvTitle.setText(topNews.get(0).title);
-			mIndicator.onPageSelected(0);//默认页面初始化是第一个指示器被选中
+		more = dataBean.data.more;
+		if (!isMore) {
+			System.out.println(isMore);
+			topNews = dataBean.data.topnews;
+			if (topNews!=null) {
+				vpTopNews.setAdapter(new TopNewAdapter());
+				mIndicator.setViewPager(vpTopNews);
+				mIndicator.setSnap(true);
+				mIndicator.setOnPageChangeListener(new OnPageChangeListener() {
+					@Override
+					public void onPageSelected(int position) {
+						tvTitle.setText(topNews.get(position).title);
+					}
+					@Override
+					public void onPageScrolled(int position, float positionOffset,
+							int positionOffsetPixels) {
+					}
+					@Override
+					public void onPageScrollStateChanged(int state) {
+					}
+				});
+				tvTitle.setText(topNews.get(0).title);
+				mIndicator.onPageSelected(0);//默认页面初始化是第一个指示器被选中
+			}
+			mNewList = dataBean.data.news;
+			if (mNewList!=null) {
+				NewsAdapter mNewAdapter=new NewsAdapter();
+				lvList.setAdapter(mNewAdapter);
+			}
+		}else {
+			ArrayList<TabNews>moreNews=dataBean.data.news;
+			mNewList.addAll(moreNews);
 		}
-		mNewList = dataBean.data.news;
-		if (mNewList!=null) {
-			NewsAdapter mNewAdapter=new NewsAdapter();
-			lvList.setAdapter(mNewAdapter);
-			lvList.setOnRefreshListener(new OnRefreshListener() {
-				@Override
-				public void onRefresh() {
-					getDataFromServer();
-				}
-
-				@Override
-				public void onLoadMore() {
-					
-				}
-			});
-		}
+		
 	}
+
 
 	class TopNewAdapter extends PagerAdapter{
 		private BitmapUtils bitmapUtils;

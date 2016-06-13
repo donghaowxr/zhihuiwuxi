@@ -101,7 +101,7 @@ public class NewsPager extends BasePager {
 	 * @param position 当前选中菜单的位置
 	 */
 	public void setCurrentDetailPager(int position){
-		BaseMenuDetailPager pager=mMenuDetailPagers.get(position);
+		NewsMenuDetailPager pager=(NewsMenuDetailPager) mMenuDetailPagers.get(position);
 		View view=pager.mRootView;
 		flContent.removeAllViews();
 		flContent.addView(view);

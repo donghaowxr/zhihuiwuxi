@@ -37,7 +37,7 @@ import android.widget.AbsListView.OnScrollListener;
 	private OnRefreshListener onRefreshListener;
 	private View footView;
 	private int footMeasureHeight;
-	private boolean isScroll=true;
+	private boolean isScroll=false;
 
 	public PullToRefreshListView(Context context, AttributeSet attrs,
 			int defStyle) {
@@ -173,13 +173,18 @@ import android.widget.AbsListView.OnScrollListener;
 	 * 恢复初始状态
 	 */
 	public void setRefreshComplete(boolean success){
-		headerView.setPadding(0, -measureHeight, 0, 0);
-		mCurrentState=STATE_PULL_TO_REFRESH;
-		tvTitle.setText("下拉刷新");
-		ivArrow.setVisibility(View.VISIBLE);
-		pbLoading.setVisibility(View.INVISIBLE);
-		if (success) {
-			refreshTime();
+		if (!isScroll) {
+			headerView.setPadding(0, -measureHeight, 0, 0);
+			mCurrentState=STATE_PULL_TO_REFRESH;
+			tvTitle.setText("下拉刷新");
+			ivArrow.setVisibility(View.VISIBLE);
+			pbLoading.setVisibility(View.INVISIBLE);
+			if (success) {
+				refreshTime();
+			}
+		}else {
+			footView.setPadding(0, -footMeasureHeight, 0, 0);
+			isScroll=false;
 		}
 	}
 	
@@ -210,13 +215,11 @@ import android.widget.AbsListView.OnScrollListener;
 		if (scrollState==SCROLL_STATE_IDLE) {//当滑动状态为空闲时
 			int currentPosition=getLastVisiblePosition();
 			if (currentPosition==getCount()-1) {
-				if (isScroll) {
-					isScroll=false;
-					footView.setPadding(0, 0, 0, 0);
-					setSelection(getCount()-1);
-					if (onRefreshListener!=null) {
-						onRefreshListener.onLoadMore();
-					}
+				isScroll=true;
+				footView.setPadding(0, 0, 0, 0);
+				setSelection(getCount()-1);
+				if (onRefreshListener!=null) {
+					onRefreshListener.onLoadMore();
 				}
 			}
 		}
