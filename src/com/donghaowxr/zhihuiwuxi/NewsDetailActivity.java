@@ -1,0 +1,11 @@
+package com.donghaowxr.zhihuiwuxi;
+
+import android.app.Activity;
+import android.os.Bundle;
+
+public class NewsDetailActivity extends Activity {
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+	}
+}

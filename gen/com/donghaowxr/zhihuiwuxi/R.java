@@ -533,11 +533,14 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int xsearch_msg_pull_arrow_down=0x7f020041;
     }
     public static final class id {
-        public static final int action_settings=0x7f09002a;
+        public static final int action_settings=0x7f09002e;
         public static final int bottom=0x7f090004;
-        public static final int btn_Menu=0x7f090029;
+        public static final int btn_Menu=0x7f09002a;
+        public static final int btn_back=0x7f090029;
         public static final int btn_next=0x7f090022;
+        public static final int btn_share=0x7f09002d;
         public static final int btn_start=0x7f09000b;
+        public static final int btn_textsize=0x7f09002c;
         public static final int fl_content=0x7f090021;
         public static final int fullscreen=0x7f090008;
         public static final int indicator=0x7f09001d;
@@ -547,6 +550,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int left=0x7f090006;
         public static final int left_menu=0x7f09001b;
         public static final int llParent=0x7f09000c;
+        public static final int ll_control=0x7f09002b;
         public static final int lv_list=0x7f090024;
         public static final int lv_menu=0x7f090019;
         public static final int main_content=0x7f09000e;
@@ -587,20 +591,21 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     public static final class layout {
         public static final int activity_guide=0x7f030000;
         public static final int activity_main=0x7f030001;
-        public static final int activity_splash=0x7f030002;
-        public static final int foot_to_more=0x7f030003;
-        public static final int fragment_content=0x7f030004;
-        public static final int fragment_left_menu=0x7f030005;
-        public static final int item_leftmenu=0x7f030006;
-        public static final int left_menu=0x7f030007;
-        public static final int list_item_header=0x7f030008;
-        public static final int list_item_news=0x7f030009;
-        public static final int page_base=0x7f03000a;
-        public static final int pager_news_menu_detail=0x7f03000b;
-        public static final int pager_tab_detail=0x7f03000c;
-        public static final int pull_to_refresh=0x7f03000d;
-        public static final int slidingmenumain=0x7f03000e;
-        public static final int title_bar=0x7f03000f;
+        public static final int activity_news_detail=0x7f030002;
+        public static final int activity_splash=0x7f030003;
+        public static final int foot_to_more=0x7f030004;
+        public static final int fragment_content=0x7f030005;
+        public static final int fragment_left_menu=0x7f030006;
+        public static final int item_leftmenu=0x7f030007;
+        public static final int left_menu=0x7f030008;
+        public static final int list_item_header=0x7f030009;
+        public static final int list_item_news=0x7f03000a;
+        public static final int page_base=0x7f03000b;
+        public static final int pager_news_menu_detail=0x7f03000c;
+        public static final int pager_tab_detail=0x7f03000d;
+        public static final int pull_to_refresh=0x7f03000e;
+        public static final int slidingmenumain=0x7f03000f;
+        public static final int title_bar=0x7f030010;
     }
     public static final class menu {
         public static final int main=0x7f0b0000;
