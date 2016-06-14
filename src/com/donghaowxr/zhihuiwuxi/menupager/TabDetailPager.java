@@ -1,6 +1,8 @@
 package com.donghaowxr.zhihuiwuxi.menupager;
 
 import java.util.ArrayList;
+
+import com.donghaowxr.zhihuiwuxi.NewsDetailActivity;
 import com.donghaowxr.zhihuiwuxi.R;
 import com.donghaowxr.zhihuiwuxi.domain.NewsMenu.DataArray.ChildrenArray;
 import com.donghaowxr.zhihuiwuxi.domain.NewsTabBean;
@@ -23,6 +25,7 @@ import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.viewpagerindicator.CirclePageIndicator;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
@@ -99,6 +102,9 @@ public class TabDetailPager extends BaseMenuDetailPager {
 				}
 				TextView tvTitle=(TextView) view.findViewById(R.id.tv_news_title);
 				tvTitle.setTextColor(Color.GRAY);
+				
+				Intent intent=new Intent(mActivity, NewsDetailActivity.class);
+				mActivity.startActivity(intent);
 			}
 		});
 		return view;

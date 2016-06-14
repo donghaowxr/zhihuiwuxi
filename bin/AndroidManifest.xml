@@ -29,6 +29,7 @@
         <activity android:name="com.donghaowxr.zhihuiwuxi.GuideActivity"></activity>
         <activity android:name="com.donghaowxr.zhihuiwuxi.MainActivity"
             android:theme="@style/Theme.PageIndicatorDefaults"></activity>
+        <activity android:name="com.donghaowxr.zhihuiwuxi.NewsDetailActivity"></activity>
     </application>
 
 </manifest>
