@@ -103,7 +103,11 @@ public class TabDetailPager extends BaseMenuDetailPager {
 				TextView tvTitle=(TextView) view.findViewById(R.id.tv_news_title);
 				tvTitle.setTextColor(Color.GRAY);
 				
+				String newsUrl=mNewList.get(itemPosition).url;
+				newsUrl=newsUrl.substring(25, newsUrl.length());
+				newsUrl=GlobalConfig.SERVER_URL+newsUrl;
 				Intent intent=new Intent(mActivity, NewsDetailActivity.class);
+				intent.putExtra("newsUrl", newsUrl);
 				mActivity.startActivity(intent);
 			}
 		});
