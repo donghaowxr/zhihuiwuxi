@@ -27,10 +27,14 @@ import com.viewpagerindicator.CirclePageIndicator;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.text.TextUtils;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -56,6 +60,7 @@ public class TabDetailPager extends BaseMenuDetailPager {
 	private ArrayList<TopNews> topNews;
 	private ArrayList<TabNews> mNewList;
 	private String more;
+	private Handler mHandler;
 
 	public TabDetailPager(Activity activity, ChildrenArray childrenArray) {
 		super(activity);
@@ -207,6 +212,42 @@ public class TabDetailPager extends BaseMenuDetailPager {
 			if (mNewList!=null) {
 				NewsAdapter mNewAdapter=new NewsAdapter();
 				lvList.setAdapter(mNewAdapter);
+			}
+			if (mHandler==null) {
+				mHandler=new Handler(){
+					@Override
+					public void handleMessage(Message msg) {
+						super.handleMessage(msg);
+						int currentPosition=vpTopNews.getCurrentItem();
+						currentPosition++;
+						if (currentPosition>topNews.size()-1) {
+							currentPosition=0;
+						}
+						vpTopNews.setCurrentItem(currentPosition);
+						mHandler.sendEmptyMessageDelayed(0, 3000);
+					}
+				};
+				mHandler.sendEmptyMessageDelayed(0, 3000);
+				vpTopNews.setOnTouchListener(new OnTouchListener() {
+					@Override
+					public boolean onTouch(View v, MotionEvent event) {
+						switch (event.getAction()) {
+						case MotionEvent.ACTION_DOWN:
+							//用户在viewPager上手指按下后清除handler所有消息
+							mHandler.removeCallbacksAndMessages(null);
+							break;
+						case MotionEvent.ACTION_UP:
+							//当手指离开viewpager时重新发送轮询消息
+							mHandler.sendEmptyMessageDelayed(0, 3000);
+							break;
+						case MotionEvent.ACTION_CANCEL:
+							//当事件被取消时，重新发送轮询消息
+							mHandler.sendEmptyMessageDelayed(0, 3000);
+							break;
+						}
+						return false;
+					}
+				});
 			}
 		}else {
 			ArrayList<TabNews>moreNews=dataBean.data.news;
