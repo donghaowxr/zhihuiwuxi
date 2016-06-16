@@ -23,6 +23,7 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:textColor="#a000"
+            android:singleLine="true"
             android:textSize="18sp" />
     </LinearLayout>
 

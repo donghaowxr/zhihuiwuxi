@@ -583,11 +583,12 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int xsearch_msg_pull_arrow_down=0x7f020071;
     }
     public static final class id {
-        public static final int action_settings=0x7f090032;
+        public static final int action_settings=0x7f090033;
         public static final int bottom=0x7f090004;
         public static final int btn_Menu=0x7f09002e;
         public static final int btn_back=0x7f09002d;
         public static final int btn_next=0x7f090026;
+        public static final int btn_photo=0x7f090032;
         public static final int btn_share=0x7f090031;
         public static final int btn_start=0x7f09000b;
         public static final int btn_textsize=0x7f090030;

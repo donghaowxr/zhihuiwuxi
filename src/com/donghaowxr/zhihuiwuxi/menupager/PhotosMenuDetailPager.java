@@ -19,23 +19,29 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import android.app.Activity;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class PhotosMenuDetailPager extends BaseMenuDetailPager {
+public class PhotosMenuDetailPager extends BaseMenuDetailPager implements OnClickListener {
 	@ViewInject(R.id.lv_photo)
 	private ListView lvPhoto;
 	@ViewInject(R.id.gv_photo)
 	private GridView gvPhoto;
 	private ArrayList<PhotoNews> photoNews;
+	private boolean isListView=true;
+	private ImageButton mBtnPhoto;
 
-	public PhotosMenuDetailPager(Activity activity) {
+	public PhotosMenuDetailPager(Activity activity,ImageButton btnPhoto) {
 		super(activity);
+		btnPhoto.setOnClickListener(this);
+		mBtnPhoto=btnPhoto;
 	}
 
 	@Override
@@ -92,6 +98,7 @@ public class PhotosMenuDetailPager extends BaseMenuDetailPager {
 		photoNews = dataBean.data.news;
 
 		lvPhoto.setAdapter(new PhotoAdapter());
+		gvPhoto.setAdapter(new PhotoAdapter());
 	}
 
 	public class PhotoAdapter extends BaseAdapter {
@@ -146,6 +153,21 @@ public class PhotosMenuDetailPager extends BaseMenuDetailPager {
 	static class ViewHolder {
 		public ImageView ivPhoto;
 		public TextView tvTitle;
+	}
+
+	@Override
+	public void onClick(View v) {
+		if (isListView) {
+			isListView=false;
+			mBtnPhoto.setImageResource(R.drawable.icon_pic_list_type);
+			lvPhoto.setVisibility(View.GONE);
+			gvPhoto.setVisibility(View.VISIBLE);
+		}else {
+			isListView=true;
+			mBtnPhoto.setImageResource(R.drawable.icon_pic_grid_type);
+			lvPhoto.setVisibility(View.VISIBLE);
+			gvPhoto.setVisibility(View.GONE);
+		}
 	}
 
 }

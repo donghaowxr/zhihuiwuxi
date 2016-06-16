@@ -17,6 +17,7 @@ public class BasePager {
 	protected ImageButton btnMenu;
 	protected FrameLayout flContent;
 	public View mRootView;
+	protected ImageButton btnPhoto;
 
 	public BasePager(Activity activity){
 		mActivity = activity;
@@ -32,6 +33,7 @@ public class BasePager {
 		tvTitle = (TextView) view.findViewById(R.id.tv_Title);
 		btnMenu = (ImageButton) view.findViewById(R.id.btn_Menu);
 		flContent = (FrameLayout) view.findViewById(R.id.fl_content);
+		btnPhoto = (ImageButton) view.findViewById(R.id.btn_photo);
 		
 		btnMenu.setOnClickListener(new OnClickListener() {
 			@Override

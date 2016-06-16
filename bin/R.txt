@@ -201,11 +201,12 @@ int drawable vpi__tab_unselected_holo 0x7f02006e
 int drawable vpi__tab_unselected_pressed_holo 0x7f02006f
 int drawable xsearch_loading 0x7f020070
 int drawable xsearch_msg_pull_arrow_down 0x7f020071
-int id action_settings 0x7f090032
+int id action_settings 0x7f090033
 int id bottom 0x7f090004
 int id btn_Menu 0x7f09002e
 int id btn_back 0x7f09002d
 int id btn_next 0x7f090026
+int id btn_photo 0x7f090032
 int id btn_share 0x7f090031
 int id btn_start 0x7f09000b
 int id btn_textsize 0x7f090030

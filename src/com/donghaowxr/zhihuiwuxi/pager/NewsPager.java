@@ -23,6 +23,7 @@ import android.graphics.Color;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -93,7 +94,7 @@ public class NewsPager extends BasePager {
 		mMenuDetailPagers = new ArrayList<BaseMenuDetailPager>();
 		mMenuDetailPagers.add(new NewsMenuDetailPager(mActivity,data.data.get(0).children));
 		mMenuDetailPagers.add(new TopicMenuDetailPager(mActivity));
-		mMenuDetailPagers.add(new PhotosMenuDetailPager(mActivity));
+		mMenuDetailPagers.add(new PhotosMenuDetailPager(mActivity,btnPhoto));
 		mMenuDetailPagers.add(new InteractMenuDetailPager(mActivity));
 		setCurrentDetailPager(0);
 	}
@@ -110,5 +111,12 @@ public class NewsPager extends BasePager {
 		pager.initData();
 		tvTitle.setText(data.data.get(position).title);
 		
+		if (pager instanceof PhotosMenuDetailPager) {
+			//显示组图菜单按钮
+			btnPhoto.setVisibility(View.VISIBLE);
+		}else {
+			//隐藏组图菜单按钮
+			btnPhoto.setVisibility(View.GONE);
+		}
 	}
 }
