@@ -24,6 +24,7 @@ import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class NewsPager extends BasePager {
 
@@ -72,6 +73,7 @@ public class NewsPager extends BasePager {
 			public void onFailure(HttpException error, String msg) {
 				error.printStackTrace();
 				System.out.println(msg);
+				Toast.makeText(mActivity, "获取数据失败", Toast.LENGTH_SHORT).show();
 			}
 		});
 	}
@@ -101,7 +103,7 @@ public class NewsPager extends BasePager {
 	 * @param position 当前选中菜单的位置
 	 */
 	public void setCurrentDetailPager(int position){
-		NewsMenuDetailPager pager=(NewsMenuDetailPager) mMenuDetailPagers.get(position);
+		BaseMenuDetailPager pager=(BaseMenuDetailPager) mMenuDetailPagers.get(position);
 		View view=pager.mRootView;
 		flContent.removeAllViews();
 		flContent.addView(view);

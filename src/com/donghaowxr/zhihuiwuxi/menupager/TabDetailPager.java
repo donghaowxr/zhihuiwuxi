@@ -150,6 +150,7 @@ public class TabDetailPager extends BaseMenuDetailPager {
 			public void onFailure(HttpException error, String msg) {
 				error.printStackTrace();
 				System.out.println(msg);
+				Toast.makeText(mActivity, "获取数据失败", Toast.LENGTH_SHORT).show();
 				lvList.setRefreshComplete(false);
 			}
 		});
@@ -173,6 +174,7 @@ public class TabDetailPager extends BaseMenuDetailPager {
 			public void onFailure(HttpException error, String msg) {
 				error.printStackTrace();
 				System.out.println(msg);
+				Toast.makeText(mActivity, "获取数据失败", Toast.LENGTH_SHORT).show();
 				lvList.setRefreshComplete(false);
 			}
 		});
