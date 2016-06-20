@@ -23,7 +23,9 @@ public class MainActivity extends SlidingFragmentActivity {
 //		slidingMenu.setSecondaryMenu(R.layout.left_menu);//设置第二个侧边栏
 		slidingMenu.setMode(SlidingMenu.LEFT);//设置侧边栏的位置
 		slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);//设置全屏触摸
-		slidingMenu.setBehindOffset(400);//设置屏幕预留的宽度
+		int screenWidth=getWindowManager().getDefaultDisplay().getWidth();
+		int width=screenWidth*200/320;
+		slidingMenu.setBehindOffset(width);//设置屏幕预留的宽度
 		initFragment();
 	}
 	
