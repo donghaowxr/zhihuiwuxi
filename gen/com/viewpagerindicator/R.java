@@ -65,8 +65,8 @@ public final class R {
 		public static final int vpi__bright_foreground_holo_light = 0x7f040003;
 		public static final int vpi__bright_foreground_inverse_holo_dark = 0x7f040006;
 		public static final int vpi__bright_foreground_inverse_holo_light = 0x7f040007;
-		public static final int vpi__dark_theme = 0x7f040014;
-		public static final int vpi__light_theme = 0x7f040015;
+		public static final int vpi__dark_theme = 0x7f040015;
+		public static final int vpi__light_theme = 0x7f040016;
 	}
 	public static final class dimen {
 		public static final int default_circle_indicator_radius = 0x7f070000;
@@ -84,14 +84,14 @@ public final class R {
 		public static final int default_title_indicator_top_padding = 0x7f07000c;
 	}
 	public static final class drawable {
-		public static final int news_tab_item_bg_select = 0x7f020023;
-		public static final int vpi__tab_indicator = 0x7f020069;
-		public static final int vpi__tab_selected_focused_holo = 0x7f02006a;
-		public static final int vpi__tab_selected_holo = 0x7f02006b;
-		public static final int vpi__tab_selected_pressed_holo = 0x7f02006c;
-		public static final int vpi__tab_unselected_focused_holo = 0x7f02006d;
-		public static final int vpi__tab_unselected_holo = 0x7f02006e;
-		public static final int vpi__tab_unselected_pressed_holo = 0x7f02006f;
+		public static final int news_tab_item_bg_select = 0x7f02002b;
+		public static final int vpi__tab_indicator = 0x7f020075;
+		public static final int vpi__tab_selected_focused_holo = 0x7f020076;
+		public static final int vpi__tab_selected_holo = 0x7f020077;
+		public static final int vpi__tab_selected_pressed_holo = 0x7f020078;
+		public static final int vpi__tab_unselected_focused_holo = 0x7f020079;
+		public static final int vpi__tab_unselected_holo = 0x7f02007a;
+		public static final int vpi__tab_unselected_pressed_holo = 0x7f02007b;
 	}
 	public static final class id {
 		public static final int bottom = 0x7f090004;

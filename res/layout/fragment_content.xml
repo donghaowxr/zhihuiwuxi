@@ -35,7 +35,7 @@
             android:id="@+id/rb_Smart"
             style="@style/Bottom_Tab_Style"
             android:drawableTop="@drawable/tab_smart_selector"
-            android:text="智慧服务" />
+            android:text="弹幕视频" />
         
         <RadioButton
             android:id="@+id/rb_Gov"

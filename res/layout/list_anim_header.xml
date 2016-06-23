@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="180dp" >
+
+        <com.donghaowxr.zhihuiwuxi.view.TopNewsViewPager
+            android:id="@+id/vp_top_anim"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+        </com.donghaowxr.zhihuiwuxi.view.TopNewsViewPager>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@null"
+            android:padding="10dp" >
+
+            <com.viewpagerindicator.CirclePageIndicator
+                android:id="@+id/indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                app:fillColor="#f00"
+                app:pageColor="#cccccc"
+                app:radius="3dp"
+                app:strokeWidth="0dp" />
+        </RelativeLayout>
+    </FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:background="#f4f4f4" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp" >
+
+        <RadioButton
+            style="@style/anim_radio_style"
+            android:drawableTop="@drawable/png1"
+            android:text="连载动画" />
+
+        <RadioButton
+            style="@style/anim_radio_style"
+            android:drawableTop="@drawable/png2"
+            android:text="完结动画" />
+
+        <RadioButton
+            style="@style/anim_radio_style"
+            android:drawableTop="@drawable/png3"
+            android:text="国产动画" />
+
+        <RadioButton
+            style="@style/anim_radio_style"
+            android:drawableTop="@drawable/png4"
+            android:text="官方延伸" />
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#f4f4f4"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="15dp" >
+
+        <Button
+            style="@style/btn_anim_style"
+            android:background="@drawable/btn_anim_drawable_1"
+            android:drawableLeft="@drawable/btn_anim_1"
+            android:text="追番" />
+
+        <Button
+            style="@style/btn_anim_style"
+            android:background="@drawable/btn_anim_drawable_2"
+            android:drawableLeft="@drawable/btn_anim_2"
+            android:text="放送表" />
+
+        <Button
+            style="@style/btn_anim_style"
+            android:background="@drawable/btn_anim_drawable_3"
+            android:drawableLeft="@drawable/btn_anim_3"
+            android:text="索引" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="番剧推荐"
+            android:drawablePadding="3dp"
+            android:drawableLeft="@drawable/anim_top"
+            android:textSize="12sp"
+            android:textColor="#282828"
+            />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:background="#f4f4f4" 
+        />
+
+</LinearLayout>
