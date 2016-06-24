@@ -1,9 +1,7 @@
 package com.donghaowxr.zhihuiwuxi.pager;
 
 import java.util.ArrayList;
-
 import com.donghaowxr.zhihuiwuxi.animpager.AnimPager;
-import com.donghaowxr.zhihuiwuxi.animpager.BaseAnimPager;
 import com.donghaowxr.zhihuiwuxi.domain.AnimBean;
 import com.donghaowxr.zhihuiwuxi.global.GlobalConfig;
 import com.donghaowxr.zhihuiwuxi.utils.CacheUtils;
@@ -13,7 +11,6 @@ import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
-
 import android.app.Activity;
 import android.graphics.Color;
 import android.text.TextUtils;
@@ -23,7 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class SmartPager extends BasePager {
-	private ArrayList<BaseAnimPager>mBaseAnimPagers;
+	private ArrayList<BasePager>mBaseAnimPagers;
 
 	public SmartPager(Activity activity) {
 		super(activity);
@@ -81,14 +78,14 @@ public class SmartPager extends BasePager {
 		Gson gson = new Gson();
 		AnimBean mAnimBean = gson.fromJson(result, AnimBean.class);
 		tvTitle.setText(mAnimBean.data.title);
-		mBaseAnimPagers=new ArrayList<BaseAnimPager>();
+		mBaseAnimPagers=new ArrayList<BasePager>();
 		mBaseAnimPagers.add(new AnimPager(mActivity,mAnimBean));
 		flContent.removeAllViews();
 		setCurrentPage(0);
 	}
 
 	private void setCurrentPage(int position) {
-		BaseAnimPager mBaseAnimPager=mBaseAnimPagers.get(position);
+		BasePager mBaseAnimPager=mBaseAnimPagers.get(position);
 		View view=mBaseAnimPager.mRootView;
 		flContent.removeAllViews();
 		flContent.addView(view);

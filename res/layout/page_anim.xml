@@ -5,11 +5,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <ListView
+    <com.donghaowxr.zhihuiwuxi.view.PullToRefreshListView
         android:id="@+id/lv_anim"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="@null" >
-    </ListView>
+    </com.donghaowxr.zhihuiwuxi.view.PullToRefreshListView>
 
 </LinearLayout>

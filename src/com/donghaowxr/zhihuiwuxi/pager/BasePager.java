@@ -15,7 +15,7 @@ public class BasePager {
 	protected Activity mActivity;
 	protected TextView tvTitle;
 	protected ImageButton btnMenu;
-	protected FrameLayout flContent;
+	public FrameLayout flContent;
 	public View mRootView;
 	protected ImageButton btnPhoto;
 

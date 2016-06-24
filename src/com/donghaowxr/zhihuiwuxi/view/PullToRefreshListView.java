@@ -17,17 +17,18 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.AbsListView.OnScrollListener;
 
-@SuppressLint({ "ClickableViewAccessibility", "SimpleDateFormat" }) public class PullToRefreshListView extends ListView implements OnScrollListener {
+@SuppressLint({ "ClickableViewAccessibility", "SimpleDateFormat" })
+public class PullToRefreshListView extends ListView implements OnScrollListener {
 
 	private View headerView;
 	private int measureHeight;
-	private float startY;
+	private float startY = -1;
 	private float endY;
 	private float dY;
-	private final int STATE_PULL_TO_REFRESH=0;
-	private final int STATE_RELEASE_TO_REFRESH=1;
-	private final int STATE_REFRESHING=2;
-	private int mCurrentState=STATE_PULL_TO_REFRESH;
+	private final int STATE_PULL_TO_REFRESH = 0;
+	private final int STATE_RELEASE_TO_REFRESH = 1;
+	private final int STATE_REFRESHING = 2;
+	private int mCurrentState = STATE_PULL_TO_REFRESH;
 	private ImageView ivArrow;
 	private ProgressBar pbLoading;
 	private TextView tvTitle;
@@ -37,7 +38,7 @@ import android.widget.AbsListView.OnScrollListener;
 	private OnRefreshListener onRefreshListener;
 	private View footView;
 	private int footMeasureHeight;
-	private boolean isScroll=false;
+	private boolean isScroll = false;
 
 	public PullToRefreshListView(Context context, AttributeSet attrs,
 			int defStyle) {
@@ -57,7 +58,7 @@ import android.widget.AbsListView.OnScrollListener;
 		initHeaderView();
 		initFootView();
 	}
-	
+
 	/**
 	 * 初始化头部布局
 	 */
@@ -74,7 +75,7 @@ import android.widget.AbsListView.OnScrollListener;
 		refreshTime();
 		initAmin();
 	}
-	
+
 	/**
 	 * 初始化脚布局
 	 */
@@ -86,20 +87,23 @@ import android.widget.AbsListView.OnScrollListener;
 		footView.setPadding(0, -footMeasureHeight, 0, 0);
 		this.setOnScrollListener(this);
 	}
-	
+
 	/**
 	 * 初始化旋转动画
 	 */
 	private void initAmin() {
-		upAnimation = new RotateAnimation(0, -180, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+		upAnimation = new RotateAnimation(0, -180, Animation.RELATIVE_TO_SELF,
+				0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
 		upAnimation.setDuration(100);
 		upAnimation.setFillAfter(true);
-		
-		downAnimation = new RotateAnimation(-180, 0, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+
+		downAnimation = new RotateAnimation(-180, 0,
+				Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,
+				0.5f);
 		downAnimation.setDuration(100);
 		downAnimation.setFillAfter(true);
 	}
-	
+
 	@Override
 	public boolean onTouchEvent(MotionEvent ev) {
 		switch (ev.getAction()) {
@@ -107,32 +111,34 @@ import android.widget.AbsListView.OnScrollListener;
 			startY = ev.getY();
 			break;
 		case MotionEvent.ACTION_MOVE:
-			if (startY==-1) {
-				startY=ev.getY();//防止用户按住viewpager上下滑动的时候事件被viewpager消费掉
+			if (startY == -1) {
+				startY = ev.getY();// 防止用户按住viewpager上下滑动的时候事件被viewpager消费掉
 			}
 			endY = ev.getY();
-			dY = endY-startY;
-			if (mCurrentState==STATE_REFRESHING) {
+			dY = endY - startY;
+			if (mCurrentState == STATE_REFRESHING) {
 				break;
 			}
-			if (getFirstVisiblePosition()==0&&dY>0) {
-				int padding=(int) (dY-measureHeight);
+			if (getFirstVisiblePosition() == 0 && dY > 0) {
+				int padding = (int) (dY - measureHeight);
 				headerView.setPadding(0, padding, 0, 0);
-				if (padding>0&&mCurrentState!=STATE_RELEASE_TO_REFRESH) {
-					mCurrentState=STATE_RELEASE_TO_REFRESH;
+				if (padding > 0 && mCurrentState != STATE_RELEASE_TO_REFRESH) {
+					mCurrentState = STATE_RELEASE_TO_REFRESH;
 					refreshState();
-				}else if (padding<0&&mCurrentState!=STATE_PULL_TO_REFRESH) {
-					mCurrentState=STATE_PULL_TO_REFRESH;
+				} else if (padding < 0
+						&& mCurrentState != STATE_PULL_TO_REFRESH) {
+					mCurrentState = STATE_PULL_TO_REFRESH;
 					refreshState();
 				}
 			}
 			break;
 		case MotionEvent.ACTION_UP:
-			if (mCurrentState==STATE_RELEASE_TO_REFRESH) {
-				mCurrentState=STATE_REFRESHING;
+			startY = -1;
+			if (mCurrentState == STATE_RELEASE_TO_REFRESH) {
+				mCurrentState = STATE_REFRESHING;
 				headerView.setPadding(0, 0, 0, 0);
 				refreshState();
-			}else if (mCurrentState==STATE_PULL_TO_REFRESH) {
+			} else if (mCurrentState == STATE_PULL_TO_REFRESH) {
 				headerView.setPadding(0, -measureHeight, 0, 0);
 			}
 			break;
@@ -162,48 +168,50 @@ import android.widget.AbsListView.OnScrollListener;
 			ivArrow.clearAnimation();
 			ivArrow.setVisibility(View.INVISIBLE);
 			pbLoading.setVisibility(View.VISIBLE);
-			if (onRefreshListener!=null) {
+			if (onRefreshListener != null) {
 				onRefreshListener.onRefresh();
 			}
 			break;
 		}
 	}
-	
+
 	/**
 	 * 恢复初始状态
 	 */
-	public void setRefreshComplete(boolean success){
+	public void setRefreshComplete(boolean success) {
 		if (!isScroll) {
 			headerView.setPadding(0, -measureHeight, 0, 0);
-			mCurrentState=STATE_PULL_TO_REFRESH;
+			mCurrentState = STATE_PULL_TO_REFRESH;
 			tvTitle.setText("下拉刷新");
 			ivArrow.setVisibility(View.VISIBLE);
 			pbLoading.setVisibility(View.INVISIBLE);
 			if (success) {
 				refreshTime();
 			}
-		}else {
+		} else {
 			footView.setPadding(0, -footMeasureHeight, 0, 0);
-			isScroll=false;
+			isScroll = false;
 		}
 	}
-	
-	private void refreshTime(){
-		SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-		String time=format.format(new Date());
+
+	private void refreshTime() {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		String time = format.format(new Date());
 		tvTime.setText(time);
 	}
-	
+
 	/**
 	 * 设置下拉刷新监听回调函数
+	 * 
 	 * @param listener
 	 */
-	public void setOnRefreshListener(OnRefreshListener listener){
-		onRefreshListener=listener;
+	public void setOnRefreshListener(OnRefreshListener listener) {
+		onRefreshListener = listener;
 	}
-	
-	public interface OnRefreshListener{
+
+	public interface OnRefreshListener {
 		void onRefresh();
+
 		void onLoadMore();
 	}
 
@@ -212,13 +220,13 @@ import android.widget.AbsListView.OnScrollListener;
 	 */
 	@Override
 	public void onScrollStateChanged(AbsListView view, int scrollState) {
-		if (scrollState==SCROLL_STATE_IDLE) {//当滑动状态为空闲时
-			int currentPosition=getLastVisiblePosition();
-			if (currentPosition==getCount()-1) {
-				isScroll=true;
+		if (scrollState == SCROLL_STATE_IDLE) {// 当滑动状态为空闲时
+			int currentPosition = getLastVisiblePosition();
+			if (currentPosition == getCount() - 1) {
+				isScroll = true;
 				footView.setPadding(0, 0, 0, 0);
-				setSelection(getCount()-1);
-				if (onRefreshListener!=null) {
+				setSelection(getCount() - 1);
+				if (onRefreshListener != null) {
 					onRefreshListener.onLoadMore();
 				}
 			}
