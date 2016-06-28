@@ -8,6 +8,7 @@ public class AnimBean {
 
 	public class AnimData {
 		public String title;
+		public String more;
 		public ArrayList<AnimList> animlist;
 		public ArrayList<TopAnim> topanim;
 
@@ -16,10 +17,10 @@ public class AnimBean {
 			public String title;
 			public String listimage;
 			public String url;
-			public ArrayList<DesBean>description;
+			public ArrayList<DesBean> description;
 		}
-		
-		public class DesBean{
+
+		public class DesBean {
 			public String item;
 		}
 

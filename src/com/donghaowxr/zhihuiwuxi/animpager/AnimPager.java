@@ -28,11 +28,15 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import com.mob.commons.logcollector.c;
 import com.viewpagerindicator.CirclePageIndicator;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.PagerAdapter;
+import android.text.TextUtils;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
@@ -42,6 +46,7 @@ import android.widget.LinearLayout.LayoutParams;
 import android.widget.ListView;
 import android.widget.TextView;
 
+@SuppressLint("ClickableViewAccessibility")
 public class AnimPager extends BasePager {
 	@ViewInject(R.id.vp_top_anim)
 	private TopNewsViewPager vpTopAnim;
@@ -54,11 +59,13 @@ public class AnimPager extends BasePager {
 	private Handler mHandler;
 	private LvAnimAdapter mLvAnimAdapter;
 	private AnimAdapter mAnimAdapter;
+	private String more;
 
 	public AnimPager(Activity activity, AnimBean animBean) {
 		super(activity);
 		mAnimLists = animBean.data.animlist;
 		mTopAnims = animBean.data.topanim;
+		more = animBean.data.more;
 	}
 
 	@Override
@@ -77,10 +84,40 @@ public class AnimPager extends BasePager {
 
 			@Override
 			public void onLoadMore() {
-
+				if (!TextUtils.isEmpty(more)) {
+					getMoreFromServer();
+				} else {
+					Toast.makeText(mActivity, "没有更多数据了...", Toast.LENGTH_SHORT)
+							.show();
+					lvAnim.setRefreshComplete(false);
+				}
 			}
 		});
 		return view;
+	}
+
+	/**
+	 * 从服务端获取更多数据
+	 */
+	protected void getMoreFromServer() {
+		HttpUtils httpUtils = new HttpUtils();
+		httpUtils.send(HttpMethod.GET, GlobalConfig.SERVER_URL + more,
+				new RequestCallBack<String>() {
+					@Override
+					public void onSuccess(ResponseInfo<String> responseInfo) {
+						String result = responseInfo.result;
+						processData(result, true);
+						lvAnim.setRefreshComplete(true);
+					}
+
+					@Override
+					public void onFailure(HttpException error, String msg) {
+						System.out.println(msg);
+						Toast.makeText(mActivity, "获取数据失败", Toast.LENGTH_SHORT)
+								.show();
+						lvAnim.setRefreshComplete(false);
+					}
+				});
 	}
 
 	/**
@@ -96,7 +133,7 @@ public class AnimPager extends BasePager {
 						String result = responseInfo.result;
 						CacheUtils.setCache(GlobalConfig.ANIM_URL, result,
 								mActivity);
-						processData(result);
+						processData(result, false);
 						lvAnim.setRefreshComplete(true);
 					}
 
@@ -106,6 +143,7 @@ public class AnimPager extends BasePager {
 						System.out.println(msg);
 						Toast.makeText(mActivity, "获取数据失败", Toast.LENGTH_SHORT)
 								.show();
+						lvAnim.setRefreshComplete(false);
 					}
 				});
 	}
@@ -115,13 +153,17 @@ public class AnimPager extends BasePager {
 	 * 
 	 * @param result
 	 */
-	protected void processData(String result) {
+	protected void processData(String result, boolean isMore) {
 		Gson gson = new Gson();
 		AnimBean mAnimBean = gson.fromJson(result, AnimBean.class);
-		mTopAnims=mAnimBean.data.topanim;
-		mAnimLists=mAnimBean.data.animlist;
-		mLvAnimAdapter.notifyDataSetChanged();
-		mAnimAdapter.notifyDataSetChanged();
+		more = mAnimBean.data.more;
+		if (!isMore) {
+			mTopAnims = mAnimBean.data.topanim;
+			mAnimLists = mAnimBean.data.animlist;
+		} else {
+			ArrayList<AnimList> moreAnimLists = mAnimBean.data.animlist;
+			mAnimLists.addAll(moreAnimLists);
+		}
 	}
 
 	@Override
@@ -145,6 +187,23 @@ public class AnimPager extends BasePager {
 				}
 			};
 			mHandler.sendEmptyMessageDelayed(0, 3000);
+			vpTopAnim.setOnTouchListener(new OnTouchListener() {
+				@Override
+				public boolean onTouch(View v, MotionEvent event) {
+					switch (event.getAction()) {
+					case MotionEvent.ACTION_DOWN:
+						mHandler.removeCallbacksAndMessages(null);
+						break;
+					case MotionEvent.ACTION_UP:
+						mHandler.sendEmptyMessageDelayed(0, 3000);
+						break;
+					case MotionEvent.ACTION_CANCEL:
+						mHandler.sendEmptyMessageDelayed(0, 3000);
+						break;
+					}
+					return false;
+				}
+			});
 		}
 	}
 
