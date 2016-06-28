@@ -2,6 +2,7 @@ package com.donghaowxr.zhihuiwuxi.pager;
 
 import java.util.ArrayList;
 import com.donghaowxr.zhihuiwuxi.animpager.AnimPager;
+import com.donghaowxr.zhihuiwuxi.animpager.BaseAnimPager;
 import com.donghaowxr.zhihuiwuxi.domain.AnimBean;
 import com.donghaowxr.zhihuiwuxi.global.GlobalConfig;
 import com.donghaowxr.zhihuiwuxi.utils.CacheUtils;
@@ -79,7 +80,8 @@ public class SmartPager extends BasePager {
 		AnimBean mAnimBean = gson.fromJson(result, AnimBean.class);
 		tvTitle.setText(mAnimBean.data.title);
 		mBaseAnimPagers=new ArrayList<BasePager>();
-		mBaseAnimPagers.add(new AnimPager(mActivity,mAnimBean));
+		mBaseAnimPagers.add(new BaseAnimPager(mActivity,mAnimBean));
+//		mBaseAnimPagers.add(new AnimPager(mActivity,mAnimBean));
 		flContent.removeAllViews();
 		setCurrentPage(0);
 	}

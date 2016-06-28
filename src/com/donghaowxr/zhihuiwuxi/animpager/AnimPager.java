@@ -47,7 +47,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 @SuppressLint("ClickableViewAccessibility")
-public class AnimPager extends BasePager {
+public class AnimPager extends BaseAnimPager {
 	@ViewInject(R.id.vp_top_anim)
 	private TopNewsViewPager vpTopAnim;
 	@ViewInject(R.id.indicator)
