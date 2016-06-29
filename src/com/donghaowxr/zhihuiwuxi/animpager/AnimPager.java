@@ -13,6 +13,7 @@ import com.donghaowxr.zhihuiwuxi.global.GlobalConfig;
 import com.donghaowxr.zhihuiwuxi.pager.BasePager;
 import com.donghaowxr.zhihuiwuxi.utils.CacheUtils;
 import com.donghaowxr.zhihuiwuxi.utils.DensityUtils;
+import com.donghaowxr.zhihuiwuxi.view.NoScrollViewPager;
 import com.donghaowxr.zhihuiwuxi.view.PullToRefreshListView;
 import com.donghaowxr.zhihuiwuxi.view.PullToRefreshListView.OnRefreshListener;
 import com.donghaowxr.zhihuiwuxi.view.TopNewsViewPager;
@@ -33,11 +34,14 @@ import android.app.Activity;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -87,7 +91,7 @@ public class AnimPager extends BaseAnimPager {
 				if (!TextUtils.isEmpty(more)) {
 					getMoreFromServer();
 				} else {
-					Toast.makeText(mActivity, "没有更多数据了...", Toast.LENGTH_SHORT)
+					Toast.makeText(mActivity, "已经到底了...", Toast.LENGTH_SHORT)
 							.show();
 					lvAnim.setRefreshComplete(false);
 				}
@@ -173,6 +177,18 @@ public class AnimPager extends BaseAnimPager {
 		mAnimAdapter = new AnimAdapter();
 		vpTopAnim.setAdapter(mAnimAdapter);
 		mIndicator.setViewPager(vpTopAnim);
+		lvAnim.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View view,
+					int position, long id) {
+				int itemPosition = position - lvAnim.getHeaderViewsCount();
+				MainActivity mainActivity = (MainActivity) mActivity;
+				NoScrollViewPager vpParent = mainActivity.getContentFragment()
+						.getSmartPager().getBaseAnimPager()
+						.getCurrentPosition();
+				vpParent.setCurrentItem(vpParent.getCurrentItem()+1);
+			}
+		});
 		if (mHandler == null) {
 			mHandler = new Handler() {
 				@Override

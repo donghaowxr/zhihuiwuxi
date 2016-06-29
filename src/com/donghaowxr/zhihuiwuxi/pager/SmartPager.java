@@ -21,7 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class SmartPager extends BasePager {
-	private ArrayList<BasePager>mBaseAnimPagers;
+	private ArrayList<BasePager> mBaseAnimPagers;
 
 	public SmartPager(Activity activity) {
 		super(activity);
@@ -35,6 +35,7 @@ public class SmartPager extends BasePager {
 		view.setTextSize(22);
 		view.setGravity(Gravity.CENTER);
 		flContent.addView(view);
+		btnMenu.setVisibility(View.INVISIBLE);
 
 		String cacheData = CacheUtils.getCache(GlobalConfig.ANIM_URL,
 				mActivity, "");
@@ -79,16 +80,21 @@ public class SmartPager extends BasePager {
 		Gson gson = new Gson();
 		AnimBean mAnimBean = gson.fromJson(result, AnimBean.class);
 		tvTitle.setText(mAnimBean.data.title);
-		mBaseAnimPagers=new ArrayList<BasePager>();
-		mBaseAnimPagers.add(new BaseAnimPager(mActivity,mAnimBean));
-//		mBaseAnimPagers.add(new AnimPager(mActivity,mAnimBean));
+		mBaseAnimPagers = new ArrayList<BasePager>();
+		mBaseAnimPagers.add(new BaseAnimPager(mActivity, mAnimBean));
+		// mBaseAnimPagers.add(new AnimPager(mActivity,mAnimBean));
 		flContent.removeAllViews();
 		setCurrentPage(0);
 	}
 
+	public BaseAnimPager getBaseAnimPager() {
+		BaseAnimPager mBaseAnimPager = (BaseAnimPager) mBaseAnimPagers.get(0);
+		return mBaseAnimPager;
+	}
+
 	private void setCurrentPage(int position) {
-		BasePager mBaseAnimPager=mBaseAnimPagers.get(position);
-		View view=mBaseAnimPager.mRootView;
+		BasePager mBaseAnimPager = mBaseAnimPagers.get(position);
+		View view = mBaseAnimPager.mRootView;
 		flContent.removeAllViews();
 		flContent.addView(view);
 		mBaseAnimPager.initData();

@@ -9,12 +9,13 @@ import android.view.ViewGroup;
 import com.donghaowxr.zhihuiwuxi.R;
 import com.donghaowxr.zhihuiwuxi.domain.AnimBean;
 import com.donghaowxr.zhihuiwuxi.pager.BasePager;
+import com.donghaowxr.zhihuiwuxi.view.NoScrollViewPager;
 
 public class BaseAnimPager extends BasePager {
 
-	public ViewPager vpAnimPager;
+	public NoScrollViewPager vpAnimPager;
 	public AnimBean animBean;
-	private ArrayList<BasePager> mBasePagers;
+	public ArrayList<BaseAnimPager> mBasePagers;
 
 	public BaseAnimPager(Activity activity) {
 		super(activity);
@@ -28,16 +29,21 @@ public class BaseAnimPager extends BasePager {
 	@Override
 	protected View initView() {
 		View view = View.inflate(mActivity, R.layout.page_base_anim, null);
-		vpAnimPager = (ViewPager) view.findViewById(R.id.vp_anim_page);
+		vpAnimPager = (NoScrollViewPager) view.findViewById(R.id.vp_anim_page);
 		return view;
 	}
 
 	@Override
 	public void initData() {
-		mBasePagers = new ArrayList<BasePager>();
+		mBasePagers = new ArrayList<BaseAnimPager>();
 		mBasePagers.add(new AnimPager(mActivity, animBean));
+		mBasePagers.add(new AnimSelectPager(mActivity));
 		vpAnimPager.setAdapter(new BaseAnimAdapter());
-//		vpAnimPager.setCurrentItem(0);
+		vpAnimPager.setCurrentItem(0);
+	}
+	
+	public NoScrollViewPager getCurrentPosition(){
+		return vpAnimPager;
 	}
 
 	public class BaseAnimAdapter extends PagerAdapter {
@@ -59,7 +65,7 @@ public class BaseAnimPager extends BasePager {
 
 		@Override
 		public Object instantiateItem(ViewGroup container, int position) {
-			AnimPager mAnimPager=(AnimPager) mBasePagers.get(position);
+			BaseAnimPager mAnimPager= mBasePagers.get(position);
 			View view=mAnimPager.mRootView;
 			container.addView(view);
 			mAnimPager.initData();

@@ -74,7 +74,7 @@ public class ContentFragment extends BaseFragment {
 			@Override
 			public void onPageSelected(int position) {
 				mPagers.get(position).initData();
-				if (position==0||position==mPagers.size()-1) {
+				if (position==0||position==mPagers.size()-1||position==2) {
 					setLeftMenuState(false);
 				}else {
 					setLeftMenuState(true);
@@ -141,6 +141,11 @@ public class ContentFragment extends BaseFragment {
 	 */
 	public NewsPager getNewsPager(){
 		NewsPager pager=(NewsPager) mPagers.get(1);
+		return pager;
+	}
+	
+	public SmartPager getSmartPager(){
+		SmartPager pager = (SmartPager) mPagers.get(2);
 		return pager;
 	}
 }
