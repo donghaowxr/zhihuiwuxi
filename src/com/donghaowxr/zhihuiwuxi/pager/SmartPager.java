@@ -88,8 +88,13 @@ public class SmartPager extends BasePager {
 	}
 
 	public BaseAnimPager getBaseAnimPager() {
-		BaseAnimPager mBaseAnimPager = (BaseAnimPager) mBaseAnimPagers.get(0);
-		return mBaseAnimPager;
+		if (mBaseAnimPagers == null) {
+			return null;
+		} else {
+			BaseAnimPager mBaseAnimPager = (BaseAnimPager) mBaseAnimPagers
+					.get(0);
+			return mBaseAnimPager;
+		}
 	}
 
 	private void setCurrentPage(int position) {

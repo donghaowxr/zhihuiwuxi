@@ -1,7 +1,9 @@
 package com.donghaowxr.zhihuiwuxi;
 
+import com.donghaowxr.zhihuiwuxi.animpager.BaseAnimPager;
 import com.donghaowxr.zhihuiwuxi.fragment.ContentFragment;
 import com.donghaowxr.zhihuiwuxi.fragment.LeftMenuFragment;
+import com.donghaowxr.zhihuiwuxi.pager.SmartPager;
 import com.donghaowxr.zhihuiwuxi.view.NoScrollViewPager;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
@@ -73,10 +75,20 @@ public class MainActivity extends SlidingFragmentActivity {
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
-			NoScrollViewPager vpPager=getContentFragment().getSmartPager().getBaseAnimPager().getCurrentPosition();
-			if (vpPager.getCurrentItem() != 0) {
-				vpPager.setCurrentItem(vpPager.getCurrentItem()-1);
-				return true;
+			ContentFragment contentFragment = getContentFragment();
+			SmartPager smartPager = contentFragment.getSmartPager();
+			BaseAnimPager baseAnimPager = smartPager.getBaseAnimPager();
+			NoScrollViewPager vpPager = null;
+			if (baseAnimPager != null) {
+				vpPager = baseAnimPager.getCurrentPosition();
+			}
+			if (vpPager != null) {
+				if (vpPager.getCurrentItem() != 0) {
+					vpPager.setCurrentItem(vpPager.getCurrentItem() - 1);
+					return true;
+				} else {
+					return super.onKeyDown(keyCode, event);
+				}
 			} else {
 				return super.onKeyDown(keyCode, event);
 			}

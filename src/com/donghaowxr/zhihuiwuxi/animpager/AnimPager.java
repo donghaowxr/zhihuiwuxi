@@ -179,7 +179,7 @@ public class AnimPager extends BaseAnimPager {
 		mIndicator.setViewPager(vpTopAnim);
 		lvAnim.setOnItemClickListener(new OnItemClickListener() {
 			@Override
-			public void onItemClick(AdapterView<?> arg0, View view,
+			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				int itemPosition = position - lvAnim.getHeaderViewsCount();
 				MainActivity mainActivity = (MainActivity) mActivity;

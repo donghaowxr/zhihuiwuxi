@@ -38,12 +38,17 @@ public class BaseAnimPager extends BasePager {
 		mBasePagers = new ArrayList<BaseAnimPager>();
 		mBasePagers.add(new AnimPager(mActivity, animBean));
 		mBasePagers.add(new AnimSelectPager(mActivity));
+		vpAnimPager.setOffscreenPageLimit(mBasePagers.size());
 		vpAnimPager.setAdapter(new BaseAnimAdapter());
 		vpAnimPager.setCurrentItem(0);
 	}
-	
-	public NoScrollViewPager getCurrentPosition(){
-		return vpAnimPager;
+
+	public NoScrollViewPager getCurrentPosition() {
+		if (vpAnimPager != null) {
+			return vpAnimPager;
+		} else {
+			return null;
+		}
 	}
 
 	public class BaseAnimAdapter extends PagerAdapter {
@@ -55,18 +60,18 @@ public class BaseAnimPager extends BasePager {
 
 		@Override
 		public boolean isViewFromObject(View view, Object object) {
-			return view==object;
+			return view == object;
 		}
 
 		@Override
 		public void destroyItem(ViewGroup container, int position, Object object) {
-			container.removeView((View)object);
+			container.removeView((View) object);
 		}
 
 		@Override
 		public Object instantiateItem(ViewGroup container, int position) {
-			BaseAnimPager mAnimPager= mBasePagers.get(position);
-			View view=mAnimPager.mRootView;
+			BaseAnimPager mAnimPager = mBasePagers.get(position);
+			View view = mAnimPager.mRootView;
 			container.addView(view);
 			mAnimPager.initData();
 			return view;

@@ -2,5 +2,8 @@
 <resources>
 
     <color name="list_anim_text">#757575</color>
+    <color name="transparent">#00000000</color>
+    <color name="mediacontroller_bg_pressed">#ff53c1bd</color>
+    <color name="mediacontroller_bg">#99000000</color>
 
 </resources>

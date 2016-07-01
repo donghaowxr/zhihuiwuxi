@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#000" >
+
+        <io.vov.vitamio.widget.VideoView
+            android:id="@+id/vv_test"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center" />
+
+        <RelativeLayout
+            android:id="@+id/rl_video_title"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:layout_gravity="top"
+            android:background="@color/mediacontroller_bg"
+            android:gravity="center_vertical"
+            android:paddingTop="10dp"
+            android:visibility="gone" >
+
+            <ImageButton
+                android:id="@+id/btn_video_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_margin="10dp"
+                android:background="@drawable/videoreturn" />
+
+            <TextView
+                android:id="@+id/tv_video_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/btn_video_back"
+                android:text="电波女与青春男"
+                android:textColor="#fff" />
+
+            <Button
+                android:id="@+id/btn_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_margin="10dp"
+                android:background="@null"
+                android:text=". . ."
+                android:textColor="#fff"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/btn_setting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_margin="10dp"
+                android:layout_toLeftOf="@id/btn_more"
+                android:background="@drawable/videosetting" />
+
+            <ImageButton
+                android:id="@+id/btn_share"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_margin="10dp"
+                android:layout_toLeftOf="@id/btn_setting"
+                android:background="@drawable/videoshare" />
+        </RelativeLayout>
+    </FrameLayout>
+
+</LinearLayout>

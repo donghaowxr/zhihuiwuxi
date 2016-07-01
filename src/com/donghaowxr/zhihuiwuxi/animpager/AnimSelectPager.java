@@ -1,15 +1,22 @@
 package com.donghaowxr.zhihuiwuxi.animpager;
 
+import com.donghaowxr.zhihuiwuxi.MainActivity;
 import com.donghaowxr.zhihuiwuxi.R;
+import com.donghaowxr.zhihuiwuxi.VideoActivity;
+import com.donghaowxr.zhihuiwuxi.view.NoScrollViewPager;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.Toast;
 
 public class AnimSelectPager extends BaseAnimPager {
 
@@ -32,6 +39,14 @@ public class AnimSelectPager extends BaseAnimPager {
 	@Override
 	public void initData() {
 		gvAnimSel.setAdapter(new SelAdapter());
+		gvAnimSel.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				Intent intent = new Intent(mActivity, VideoActivity.class);
+				mActivity.startActivity(intent);
+			}
+		});
 	}
 
 	private class SelAdapter extends BaseAdapter {

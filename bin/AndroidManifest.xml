@@ -28,6 +28,12 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
+            android:name="io.vov.vitamio.activity.InitActivity"
+            android:configChanges="orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation"
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
             android:name=".SplashActivity"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
@@ -41,9 +47,15 @@
         </activity>
         <activity
             android:name="com.donghaowxr.zhihuiwuxi.MainActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.PageIndicatorDefaults" >
         </activity>
         <activity android:name="com.donghaowxr.zhihuiwuxi.NewsDetailActivity" >
+        </activity>
+        <activity
+            android:name="com.donghaowxr.zhihuiwuxi.VideoActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
 
         <!-- sharesdk activity配置 -->

@@ -9,6 +9,8 @@
         android:layout_width="70dp"
         android:layout_height="40dp"
         android:background="@drawable/btn_grid_anim_sel"
+        android:clickable="false"
+        android:focusable="false"
         android:textColor="@color/btn_grid_anim_sel" />
 
 </LinearLayout>
