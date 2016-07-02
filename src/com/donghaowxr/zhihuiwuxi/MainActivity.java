@@ -80,7 +80,7 @@ public class MainActivity extends SlidingFragmentActivity {
 			BaseAnimPager baseAnimPager = smartPager.getBaseAnimPager();
 			NoScrollViewPager vpPager = null;
 			if (baseAnimPager != null) {
-				vpPager = baseAnimPager.getCurrentPosition();
+				vpPager = baseAnimPager.getViewPager();
 			}
 			if (vpPager != null) {
 				if (vpPager.getCurrentItem() != 0) {

@@ -1,12 +1,9 @@
 package com.donghaowxr.zhihuiwuxi.animpager;
 
-import com.donghaowxr.zhihuiwuxi.MainActivity;
 import com.donghaowxr.zhihuiwuxi.R;
 import com.donghaowxr.zhihuiwuxi.VideoActivity;
-import com.donghaowxr.zhihuiwuxi.view.NoScrollViewPager;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
@@ -16,12 +13,14 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
-import android.widget.Toast;
+import android.widget.TextView;
 
 public class AnimSelectPager extends BaseAnimPager {
 
 	@ViewInject(R.id.gv_anim_sel)
 	GridView gvAnimSel;
+	@ViewInject(R.id.tv_sel_title)
+	TextView tvTitle;
 	private int[] animCount = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,
 			12, 13 };
 
@@ -35,6 +34,10 @@ public class AnimSelectPager extends BaseAnimPager {
 		ViewUtils.inject(this, view);
 		return view;
 	}
+	
+	public void setTitle(String title){
+		tvTitle.setText(title);
+	}
 
 	@Override
 	public void initData() {
@@ -44,6 +47,8 @@ public class AnimSelectPager extends BaseAnimPager {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				Intent intent = new Intent(mActivity, VideoActivity.class);
+				String title=tvTitle.getText().toString();
+				intent.putExtra("title", title);
 				mActivity.startActivity(intent);
 			}
 		});

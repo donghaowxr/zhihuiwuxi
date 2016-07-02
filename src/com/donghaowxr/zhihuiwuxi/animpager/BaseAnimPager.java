@@ -16,6 +16,8 @@ public class BaseAnimPager extends BasePager {
 	public NoScrollViewPager vpAnimPager;
 	public AnimBean animBean;
 	public ArrayList<BaseAnimPager> mBasePagers;
+	private BaseAnimAdapter mBaseAnimAdapter;
+	private AnimSelectPager selectPager;
 
 	public BaseAnimPager(Activity activity) {
 		super(activity);
@@ -37,18 +39,24 @@ public class BaseAnimPager extends BasePager {
 	public void initData() {
 		mBasePagers = new ArrayList<BaseAnimPager>();
 		mBasePagers.add(new AnimPager(mActivity, animBean));
-		mBasePagers.add(new AnimSelectPager(mActivity));
-		vpAnimPager.setOffscreenPageLimit(mBasePagers.size());
-		vpAnimPager.setAdapter(new BaseAnimAdapter());
+		selectPager = new AnimSelectPager(mActivity);
+		mBasePagers.add(selectPager);
+		vpAnimPager.setOffscreenPageLimit(0);
+		mBaseAnimAdapter = new BaseAnimAdapter();
+		vpAnimPager.setAdapter(mBaseAnimAdapter);
 		vpAnimPager.setCurrentItem(0);
 	}
 
-	public NoScrollViewPager getCurrentPosition() {
+	public NoScrollViewPager getViewPager() {
 		if (vpAnimPager != null) {
 			return vpAnimPager;
 		} else {
 			return null;
 		}
+	}
+	
+	public void setTitle(String title){
+		selectPager.setTitle(title);
 	}
 
 	public class BaseAnimAdapter extends PagerAdapter {

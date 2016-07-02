@@ -35,6 +35,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
@@ -185,8 +186,12 @@ public class AnimPager extends BaseAnimPager {
 				MainActivity mainActivity = (MainActivity) mActivity;
 				NoScrollViewPager vpParent = mainActivity.getContentFragment()
 						.getSmartPager().getBaseAnimPager()
-						.getCurrentPosition();
+						.getViewPager();
+				String title=mAnimLists.get(itemPosition).title;
+				mainActivity.getContentFragment().getSmartPager().getBaseAnimPager().setTitle(title);
 				vpParent.setCurrentItem(vpParent.getCurrentItem()+1);
+//				pager.initData();
+				
 			}
 		});
 		if (mHandler == null) {
