@@ -53,10 +53,18 @@
         <activity android:name="com.donghaowxr.zhihuiwuxi.NewsDetailActivity" >
         </activity>
         <activity
+            android:name="com.donghaowxr.zhihuiwuxi.MainVideoActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
+        </activity>
+        <!--
+        <activity
             android:name="com.donghaowxr.zhihuiwuxi.VideoActivity"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
         </activity>
+        -->
+
 
         <!-- sharesdk activity配置 -->
         <activity

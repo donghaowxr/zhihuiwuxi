@@ -1,7 +1,7 @@
 package com.donghaowxr.zhihuiwuxi.animpager;
 
+import com.donghaowxr.zhihuiwuxi.MainVideoActivity;
 import com.donghaowxr.zhihuiwuxi.R;
-import com.donghaowxr.zhihuiwuxi.VideoActivity;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import android.app.Activity;
@@ -46,7 +46,7 @@ public class AnimSelectPager extends BaseAnimPager {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				Intent intent = new Intent(mActivity, VideoActivity.class);
+				Intent intent = new Intent(mActivity, MainVideoActivity.class);
 				String title=tvTitle.getText().toString();
 				intent.putExtra("title", title);
 				mActivity.startActivity(intent);
