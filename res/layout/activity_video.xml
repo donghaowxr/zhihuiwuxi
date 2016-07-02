@@ -15,14 +15,18 @@
             android:layout_height="fill_parent"
             android:layout_gravity="center" />
 
+        <master.flame.danmaku.ui.widget.DanmakuView
+            android:id="@+id/sv_danmaku"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
         <RelativeLayout
             android:id="@+id/rl_video_title"
             android:layout_width="match_parent"
-            android:layout_height="75dp"
+            android:layout_height="60dp"
             android:layout_gravity="top"
             android:background="@color/mediacontroller_bg"
             android:gravity="center_vertical"
-            android:paddingTop="10dp"
             android:visibility="gone" >
 
             <ImageButton
@@ -72,6 +76,32 @@
                 android:layout_toLeftOf="@id/btn_setting"
                 android:background="@drawable/videoshare" />
         </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_danmu_add"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/anim_back"
+            android:orientation="horizontal"
+            android:paddingTop="20dp"
+            android:visibility="gone" >
+
+            <EditText
+                android:id="@+id/et_send_danmu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/btn_send_danmu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:padding="10dp"
+                android:text="发送"
+                android:textColor="#fff" />
+        </LinearLayout>
     </FrameLayout>
 
 </LinearLayout>

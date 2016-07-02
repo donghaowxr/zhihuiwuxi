@@ -31,23 +31,23 @@ public final class R {
 		public static final int scrubber_track_holo_dark = 0x7f02004c;
 	}
 	public static final class id {
-		public static final int btn_danmu_add = 0x7f0b0034;
-		public static final int btn_danmu_close = 0x7f0b0035;
-		public static final int btn_danmu_suo = 0x7f0b0036;
-		public static final int btn_screen = 0x7f0b0038;
-		public static final int btn_select = 0x7f0b0037;
-		public static final int mediacontroller_file_name = 0x7f0b0033;
-		public static final int mediacontroller_play_pause = 0x7f0b002f;
-		public static final int mediacontroller_seekbar = 0x7f0b0032;
-		public static final int mediacontroller_time_current = 0x7f0b0030;
-		public static final int mediacontroller_time_total = 0x7f0b0031;
+		public static final int btn_danmu_add = 0x7f0b0038;
+		public static final int btn_danmu_close = 0x7f0b0039;
+		public static final int btn_danmu_suo = 0x7f0b003a;
+		public static final int btn_screen = 0x7f0b003c;
+		public static final int btn_select = 0x7f0b003b;
+		public static final int mediacontroller_file_name = 0x7f0b0037;
+		public static final int mediacontroller_play_pause = 0x7f0b0033;
+		public static final int mediacontroller_seekbar = 0x7f0b0036;
+		public static final int mediacontroller_time_current = 0x7f0b0034;
+		public static final int mediacontroller_time_total = 0x7f0b0035;
 	}
 	public static final class layout {
 		public static final int mediacontroller = 0x7f030010;
 		public static final int mymediacontroller = 0x7f030011;
 	}
 	public static final class raw {
-		public static final int libarm = 0x7f040000;
+		public static final int libarm = 0x7f040001;
 	}
 	public static final class string {
 		public static final int VideoView_error_button = 0x7f06000b;
