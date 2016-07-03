@@ -38,8 +38,8 @@ public class ContentFragment extends BaseFragment {
 	public void initData() {
 		//将page页添加到集合中
 		mPagers=new ArrayList<BasePager>();
-		mPagers.add(new HomePager(mActivity));
 		mPagers.add(new NewsPager(mActivity));
+		mPagers.add(new HomePager(mActivity));
 		mPagers.add(new SmartPager(mActivity));
 		mPagers.add(new GovPager(mActivity));
 		mPagers.add(new SettingPager(mActivity));
@@ -74,7 +74,7 @@ public class ContentFragment extends BaseFragment {
 			@Override
 			public void onPageSelected(int position) {
 				mPagers.get(position).initData();
-				if (position==0||position==mPagers.size()-1||position==2) {
+				if (position==1||position==mPagers.size()-1||position==2) {
 					setLeftMenuState(false);
 				}else {
 					setLeftMenuState(true);
@@ -92,7 +92,7 @@ public class ContentFragment extends BaseFragment {
 		});
 		
 		mPagers.get(0).initData();//默认加载第一页
-		setLeftMenuState(false);
+		setLeftMenuState(true);
 	}
 
 	public void setLeftMenuState(boolean b) {
@@ -140,7 +140,7 @@ public class ContentFragment extends BaseFragment {
 	 * @return 新闻中心页对象
 	 */
 	public NewsPager getNewsPager(){
-		NewsPager pager=(NewsPager) mPagers.get(1);
+		NewsPager pager=(NewsPager) mPagers.get(0);
 		return pager;
 	}
 	

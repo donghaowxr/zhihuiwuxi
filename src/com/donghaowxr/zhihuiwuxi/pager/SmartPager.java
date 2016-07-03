@@ -30,7 +30,7 @@ public class SmartPager extends BasePager {
 	@Override
 	public void initData() {
 		TextView view = new TextView(mActivity);
-		view.setText("弹幕视频");
+		view.setText("动画");
 		view.setTextColor(Color.RED);
 		view.setTextSize(22);
 		view.setGravity(Gravity.CENTER);

@@ -14,15 +14,15 @@ public class HomePager extends BasePager {
 
 	@Override
 	public void initData() {
-		TextView view=new TextView(mActivity);
-		view.setText("首页");
+		TextView view = new TextView(mActivity);
+		view.setText("聊天");
 		view.setTextColor(Color.RED);
 		view.setTextSize(22);
 		view.setGravity(Gravity.CENTER);
-		
+
 		flContent.addView(view);
-		
-		tvTitle.setText("首页");
+
+		tvTitle.setText("聊天");
 		btnMenu.setVisibility(View.INVISIBLE);
 	}
 }

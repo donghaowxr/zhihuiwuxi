@@ -23,19 +23,19 @@
             style="@style/Bottom_Tab_Style"
             android:drawableTop="@drawable/tab_home_selector"
             android:checked="true"
-            android:text="首页" />
+            android:text="新闻首页" />
         
         <RadioButton
             android:id="@+id/rb_News"
             style="@style/Bottom_Tab_Style"
             android:drawableTop="@drawable/tab_news_selector"
-            android:text="新闻中心" />
+            android:text="聊天" />
         
         <RadioButton
             android:id="@+id/rb_Smart"
             style="@style/Bottom_Tab_Style"
             android:drawableTop="@drawable/tab_smart_selector"
-            android:text="弹幕视频" />
+            android:text="动画" />
         
         <RadioButton
             android:id="@+id/rb_Gov"

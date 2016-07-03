@@ -1,8 +1,10 @@
 package com.donghaowxr.zhihuiwuxi;
 
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.KeyEvent;
 
 import com.donghaowxr.zhihuiwuxi.fragment.ContentFragment;
 import com.donghaowxr.zhihuiwuxi.fragment.LeftMenuFragment;
@@ -14,6 +16,9 @@ import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 public class MainVideoActivity extends SlidingFragmentActivity {
 	private String TAG_ScreenMenu = "TAG_ScreenMenu";
 	private String TAG_Video = "TAG_Video";
+	private int voice = 10;
+	private AudioManager mAudioManager;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -27,6 +32,14 @@ public class MainVideoActivity extends SlidingFragmentActivity {
 		int width = screenWidth * 270 / 320;
 		slidingMenu.setBehindOffset(width);// 设置屏幕预留的宽度
 		initFragment();
+		initAudio();
+	}
+
+	/**
+	 * 初始化音量调节控制器
+	 */
+	private void initAudio() {
+		mAudioManager = (AudioManager) getSystemService(MainVideoActivity.AUDIO_SERVICE);
 	}
 
 	private void initFragment() {
@@ -34,15 +47,14 @@ public class MainVideoActivity extends SlidingFragmentActivity {
 		FragmentTransaction transaction = fm.beginTransaction();// 开始事务
 		transaction.replace(R.id.fl_screen_menu, new ScreenFragment(),
 				TAG_ScreenMenu);// 用Fragment替换原有布局
-		transaction.replace(R.id.fl_main_video, new VideoFragment(),
-				TAG_Video);
+		transaction.replace(R.id.fl_main_video, new VideoFragment(), TAG_Video);
 		transaction.commit();// 提交事务
 	}
-	
-	public String getVideoTitle(){
+
+	public String getVideoTitle() {
 		return getIntent().getExtras().getString("title", "");
 	}
-	
+
 	/**
 	 * 获取主页面fragment对象
 	 * 
@@ -50,7 +62,27 @@ public class MainVideoActivity extends SlidingFragmentActivity {
 	 */
 	public VideoFragment getVideoFragment() {
 		FragmentManager fm = getSupportFragmentManager();
-		VideoFragment fragment=(VideoFragment) fm.findFragmentByTag(TAG_Video);
+		VideoFragment fragment = (VideoFragment) fm
+				.findFragmentByTag(TAG_Video);
 		return fragment;
+	}
+
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
+			if (voice > 0) {
+				voice--;
+				mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, voice,
+						AudioManager.FLAG_PLAY_SOUND);
+			}
+			return true;
+		}
+		if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) {
+			voice++;
+			mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, voice,
+					AudioManager.FLAG_PLAY_SOUND);
+			return true;
+		}
+		return super.onKeyDown(keyCode, event);
 	}
 }

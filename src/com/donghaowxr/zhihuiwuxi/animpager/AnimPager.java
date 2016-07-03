@@ -167,7 +167,13 @@ public class AnimPager extends BaseAnimPager {
 			mAnimLists = mAnimBean.data.animlist;
 		} else {
 			ArrayList<AnimList> moreAnimLists = mAnimBean.data.animlist;
-			mAnimLists.addAll(moreAnimLists);
+			if (moreAnimLists != null) {
+				mAnimLists.addAll(moreAnimLists);
+			} else {
+				Toast.makeText(mActivity, "获取数据失败...", Toast.LENGTH_SHORT)
+						.show();
+				lvAnim.setRefreshComplete(false);
+			}
 		}
 	}
 
@@ -185,13 +191,13 @@ public class AnimPager extends BaseAnimPager {
 				int itemPosition = position - lvAnim.getHeaderViewsCount();
 				MainActivity mainActivity = (MainActivity) mActivity;
 				NoScrollViewPager vpParent = mainActivity.getContentFragment()
-						.getSmartPager().getBaseAnimPager()
-						.getViewPager();
-				String title=mAnimLists.get(itemPosition).title;
-				mainActivity.getContentFragment().getSmartPager().getBaseAnimPager().setTitle(title);
-				vpParent.setCurrentItem(vpParent.getCurrentItem()+1);
-//				pager.initData();
-				
+						.getSmartPager().getBaseAnimPager().getViewPager();
+				String title = mAnimLists.get(itemPosition).title;
+				mainActivity.getContentFragment().getSmartPager()
+						.getBaseAnimPager().setTitle(title);
+				vpParent.setCurrentItem(vpParent.getCurrentItem() + 1);
+				// pager.initData();
+
 			}
 		});
 		if (mHandler == null) {
