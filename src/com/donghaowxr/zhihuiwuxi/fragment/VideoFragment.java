@@ -8,7 +8,6 @@ import java.net.URLConnection;
 import java.util.HashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
 import io.vov.vitamio.LibsChecker;
 import io.vov.vitamio.widget.MediaController;
 import io.vov.vitamio.widget.VideoView;
@@ -33,12 +32,9 @@ import master.flame.danmaku.danmaku.parser.IDataSource;
 import master.flame.danmaku.danmaku.parser.android.BiliDanmukuParser;
 import master.flame.danmaku.danmaku.util.IOUtils;
 import master.flame.danmaku.ui.widget.DanmakuView;
-
-import cn.sharesdk.framework.a;
-
 import com.donghaowxr.zhihuiwuxi.MainVideoActivity;
 import com.donghaowxr.zhihuiwuxi.R;
-
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -68,6 +64,7 @@ public class VideoFragment extends BaseFragment implements OnClickListener {
 	private EditText etSendDanmu;
 	private DanmakuContext mContext;
 	private BaseDanmakuParser mParser;
+	private boolean state = false;
 
 	private BaseCacheStuffer.Proxy mCacheStufferAdapter = new BaseCacheStuffer.Proxy() {
 		private Drawable mDrawable;
@@ -119,10 +116,11 @@ public class VideoFragment extends BaseFragment implements OnClickListener {
 			}
 		}
 	};
+	private MediaController mediaController;
 
 	@Override
 	public View initView() {
-		View view = View.inflate(mActivity, R.layout.activity_video, null);
+		View view = View.inflate(mActivity, R.layout.fragment_video, null);
 		videoView = (VideoView) view.findViewById(R.id.vv_test);
 		rlTitle = (RelativeLayout) view.findViewById(R.id.rl_video_title);
 		tvTitle = (TextView) view.findViewById(R.id.tv_video_title);
@@ -137,6 +135,7 @@ public class VideoFragment extends BaseFragment implements OnClickListener {
 	@Override
 	public void initData() {
 		setTitle();
+		setScreenState();
 		btnBack.setOnClickListener(this);
 		llDanmuAdd.setOnClickListener(this);
 		btnSendDanmu.setOnClickListener(this);
@@ -145,8 +144,8 @@ public class VideoFragment extends BaseFragment implements OnClickListener {
 	}
 
 	public void setTitle() {
-		MainVideoActivity activity=(MainVideoActivity) mActivity;
-		String title=activity.getVideoTitle();
+		MainVideoActivity activity = (MainVideoActivity) mActivity;
+		String title = activity.getVideoTitle();
 		tvTitle.setText(title);
 	}
 
@@ -156,7 +155,7 @@ public class VideoFragment extends BaseFragment implements OnClickListener {
 		}
 		Uri uri = Uri.parse("http://10.0.0.11:8080/1.flv");
 		videoView.setVideoURI(uri);
-		MediaController mediaController = new MediaController(mActivity);
+		mediaController = new MediaController(mActivity);
 
 		videoView.setMediaController(mediaController);
 		videoView.requestFocus();
@@ -205,9 +204,13 @@ public class VideoFragment extends BaseFragment implements OnClickListener {
 		mediaController.setOnScreenChangeListener(new OnScreenChangeListener() {
 			@Override
 			public void ScreenChange() {
-				System.out.println("切换清晰度");
+				toggle();
 			}
 		});
+	}
+	
+	public void changeScreenName(String name){
+		mediaController.changeScreenName(name);
 	}
 
 	private void initDanmu() {
@@ -380,6 +383,22 @@ public class VideoFragment extends BaseFragment implements OnClickListener {
 			videoView.start();
 			break;
 		}
+	}
+
+	private void setScreenState() {
+		MainVideoActivity activity = (MainVideoActivity) mActivity;
+		SlidingMenu slidingMenu = activity.getSlidingMenu();
+		if (state) {
+			slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+		} else {
+			slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_NONE);
+		}
+	}
+
+	public void toggle() {
+		MainVideoActivity activity = (MainVideoActivity) mActivity;
+		SlidingMenu slidingMenu = activity.getSlidingMenu();
+		slidingMenu.toggle();
 	}
 
 }
