@@ -764,14 +764,16 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int page_anim_select=0x7f030017;
         public static final int page_base=0x7f030018;
         public static final int page_base_anim=0x7f030019;
-        public static final int page_photos_details=0x7f03001a;
-        public static final int page_talk=0x7f03001b;
-        public static final int pager_news_menu_detail=0x7f03001c;
-        public static final int pager_tab_detail=0x7f03001d;
-        public static final int pull_to_refresh=0x7f03001e;
-        public static final int screen_menu=0x7f03001f;
-        public static final int slidingmenumain=0x7f030020;
-        public static final int title_bar=0x7f030021;
+        public static final int page_daohang=0x7f03001a;
+        public static final int page_fujin=0x7f03001b;
+        public static final int page_photos_details=0x7f03001c;
+        public static final int page_talk=0x7f03001d;
+        public static final int pager_news_menu_detail=0x7f03001e;
+        public static final int pager_tab_detail=0x7f03001f;
+        public static final int pull_to_refresh=0x7f030020;
+        public static final int screen_menu=0x7f030021;
+        public static final int slidingmenumain=0x7f030022;
+        public static final int title_bar=0x7f030023;
     }
     public static final class menu {
         public static final int main=0x7f0c0000;

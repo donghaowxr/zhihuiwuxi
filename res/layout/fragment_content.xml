@@ -15,34 +15,34 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bottom_tab_bg"
-        android:orientation="horizontal"
-        android:gravity="center" >
+        android:gravity="center"
+        android:orientation="horizontal" >
 
         <RadioButton
             android:id="@+id/rb_Home"
             style="@style/Bottom_Tab_Style"
-            android:drawableTop="@drawable/tab_home_selector"
             android:checked="true"
+            android:drawableTop="@drawable/tab_home_selector"
             android:text="新闻首页" />
-        
+
         <RadioButton
             android:id="@+id/rb_News"
             style="@style/Bottom_Tab_Style"
             android:drawableTop="@drawable/tab_news_selector"
             android:text="聊天" />
-        
+
         <RadioButton
             android:id="@+id/rb_Smart"
             style="@style/Bottom_Tab_Style"
             android:drawableTop="@drawable/tab_smart_selector"
             android:text="动画" />
-        
+
         <RadioButton
             android:id="@+id/rb_Gov"
             style="@style/Bottom_Tab_Style"
             android:drawableTop="@drawable/tab_gov_selector"
-            android:text="政务" />
-        
+            android:text="地图" />
+
         <RadioButton
             android:id="@+id/rb_Setting"
             style="@style/Bottom_Tab_Style"

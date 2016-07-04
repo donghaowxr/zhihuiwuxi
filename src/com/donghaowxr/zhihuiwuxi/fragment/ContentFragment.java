@@ -148,4 +148,9 @@ public class ContentFragment extends BaseFragment {
 		SmartPager pager = (SmartPager) mPagers.get(2);
 		return pager;
 	}
+	
+	public GovPager getGovPager(){
+		GovPager pager=(GovPager) mPagers.get(3);
+		return pager;
+	}
 }
