@@ -18,6 +18,7 @@ import android.view.Window;
 public class MainActivity extends SlidingFragmentActivity {
 	private String TAG_LeftMenu = "TAG_LeftMenu";
 	private String TAG_Content = "TAG_Content";
+	private OnMapState mOnMapState;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -95,5 +96,37 @@ public class MainActivity extends SlidingFragmentActivity {
 		} else {
 			return super.onKeyDown(keyCode, event);
 		}
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		if (mOnMapState != null) {
+			mOnMapState.MapState("destory");
+		}
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		if (mOnMapState != null) {
+			mOnMapState.MapState("resume");
+		}
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		if (mOnMapState != null) {
+			mOnMapState.MapState("pause");
+		}
+	}
+
+	public interface OnMapState {
+		void MapState(String state);
+	}
+
+	public void setOnMapStateListener(OnMapState listener) {
+		mOnMapState = listener;
 	}
 }

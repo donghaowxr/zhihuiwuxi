@@ -8,9 +8,9 @@ package io.vov.vitamio;
 
 public final class R {
 	public static final class color {
-		public static final int mediacontroller_bg = 0x7f050002;
-		public static final int mediacontroller_bg_pressed = 0x7f050001;
-		public static final int transparent = 0x7f050000;
+		public static final int mediacontroller_bg = 0x7f050013;
+		public static final int mediacontroller_bg_pressed = 0x7f050012;
+		public static final int transparent = 0x7f050011;
 	}
 	public static final class drawable {
 		public static final int danmuadd = 0x7f02001d;
@@ -31,16 +31,16 @@ public final class R {
 		public static final int scrubber_track_holo_dark = 0x7f020057;
 	}
 	public static final class id {
-		public static final int btn_danmu_add = 0x7f0b003f;
-		public static final int btn_danmu_close = 0x7f0b0040;
-		public static final int btn_danmu_suo = 0x7f0b0041;
-		public static final int btn_screen = 0x7f0b0043;
-		public static final int btn_select = 0x7f0b0042;
-		public static final int mediacontroller_file_name = 0x7f0b003e;
-		public static final int mediacontroller_play_pause = 0x7f0b003a;
-		public static final int mediacontroller_seekbar = 0x7f0b003d;
-		public static final int mediacontroller_time_current = 0x7f0b003b;
-		public static final int mediacontroller_time_total = 0x7f0b003c;
+		public static final int btn_danmu_add = 0x7f0a003f;
+		public static final int btn_danmu_close = 0x7f0a0040;
+		public static final int btn_danmu_suo = 0x7f0a0041;
+		public static final int btn_screen = 0x7f0a0043;
+		public static final int btn_select = 0x7f0a0042;
+		public static final int mediacontroller_file_name = 0x7f0a003e;
+		public static final int mediacontroller_play_pause = 0x7f0a003a;
+		public static final int mediacontroller_seekbar = 0x7f0a003d;
+		public static final int mediacontroller_time_current = 0x7f0a003b;
+		public static final int mediacontroller_time_total = 0x7f0a003c;
 	}
 	public static final class layout {
 		public static final int mediacontroller = 0x7f030014;
@@ -50,22 +50,22 @@ public final class R {
 		public static final int libarm = 0x7f040001;
 	}
 	public static final class string {
-		public static final int VideoView_error_button = 0x7f06000b;
-		public static final int VideoView_error_text_invalid_progressive_playback = 0x7f060009;
-		public static final int VideoView_error_text_unknown = 0x7f06000a;
-		public static final int VideoView_error_title = 0x7f060008;
-		public static final int mediacontroller_play_pause = 0x7f06000c;
-		public static final int permission_group_tools_description = 0x7f060003;
-		public static final int permission_group_tools_label = 0x7f060002;
-		public static final int permission_receive_messages_description = 0x7f060005;
-		public static final int permission_receive_messages_label = 0x7f060004;
-		public static final int permission_write_providers_description = 0x7f060007;
-		public static final int permission_write_providers_label = 0x7f060006;
-		public static final int vitamio_init_decoders = 0x7f060001;
-		public static final int vitamio_library_app_name = 0x7f060000;
+		public static final int VideoView_error_button = 0x7f0b000b;
+		public static final int VideoView_error_text_invalid_progressive_playback = 0x7f0b0009;
+		public static final int VideoView_error_text_unknown = 0x7f0b000a;
+		public static final int VideoView_error_title = 0x7f0b0008;
+		public static final int mediacontroller_play_pause = 0x7f0b000c;
+		public static final int permission_group_tools_description = 0x7f0b0003;
+		public static final int permission_group_tools_label = 0x7f0b0002;
+		public static final int permission_receive_messages_description = 0x7f0b0005;
+		public static final int permission_receive_messages_label = 0x7f0b0004;
+		public static final int permission_write_providers_description = 0x7f0b0007;
+		public static final int permission_write_providers_label = 0x7f0b0006;
+		public static final int vitamio_init_decoders = 0x7f0b0001;
+		public static final int vitamio_library_app_name = 0x7f0b0000;
 	}
 	public static final class style {
-		public static final int MediaController_SeekBar = 0x7f070000;
-		public static final int MediaController_Text = 0x7f070001;
+		public static final int MediaController_SeekBar = 0x7f090005;
+		public static final int MediaController_Text = 0x7f090006;
 	}
 }

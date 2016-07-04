@@ -7,7 +7,7 @@ import com.donghaowxr.zhihuiwuxi.domain.MapMenu;
 import com.donghaowxr.zhihuiwuxi.fragment.LeftMenuFragment;
 import com.donghaowxr.zhihuiwuxi.global.GlobalConfig;
 import com.donghaowxr.zhihuiwuxi.mappager.BaseMapPager;
-import com.donghaowxr.zhihuiwuxi.mappager.DaoHangPager;
+import com.donghaowxr.zhihuiwuxi.mappager.DingWeiPager;
 import com.donghaowxr.zhihuiwuxi.mappager.FuJinPager;
 import com.donghaowxr.zhihuiwuxi.utils.CacheUtils;
 import com.google.gson.Gson;
@@ -83,7 +83,7 @@ public class GovPager extends BasePager {
 		leftMenuFragment.mCurentPos = 0;
 
 		mBaseMapPagers = new ArrayList<BaseMapPager>();
-		mBaseMapPagers.add(new DaoHangPager(mActivity));
+		mBaseMapPagers.add(new DingWeiPager(mActivity));
 		mBaseMapPagers.add(new FuJinPager(mActivity));
 		setCurrentPager(0);
 	}
