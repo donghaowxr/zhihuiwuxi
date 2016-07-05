@@ -8,4 +8,10 @@ public class FuJinPager extends BaseMap {
 		super(activity);
 	}
 
+	@Override
+	protected void initSetting() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

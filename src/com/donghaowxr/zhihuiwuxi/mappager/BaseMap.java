@@ -8,14 +8,16 @@ import com.baidu.mapapi.model.LatLng;
 import com.donghaowxr.zhihuiwuxi.MainActivity;
 import com.donghaowxr.zhihuiwuxi.R;
 import com.donghaowxr.zhihuiwuxi.MainActivity.OnMapState;
+import com.donghaowxr.zhihuiwuxi.domain.HmPos;
 
 import android.app.Activity;
 import android.view.View;
 
-public class BaseMap extends BaseMapPager {
+public abstract class BaseMap extends BaseMapPager {
 
-	private MapView mMapView;
-	private BaiduMap mBaiduMap;
+	protected MapView mMapView;
+	protected BaiduMap mBaiduMap;
+	protected HmPos hmPos;
 
 	public BaseMap(Activity activity) {
 		super(activity);
@@ -46,10 +48,9 @@ public class BaseMap extends BaseMapPager {
 			}
 		});
 		mBaiduMap = mMapView.getMap();
-		MapStatusUpdate mapStatusUpdate = MapStatusUpdateFactory
-				.newLatLng(new LatLng(30.190879, 120.186773));
-		mBaiduMap.setMapStatus(mapStatusUpdate);
-		MapStatusUpdate zoonMapStatusUpdate = MapStatusUpdateFactory.zoomTo(18);
-		mBaiduMap.setMapStatus(zoonMapStatusUpdate);
+		hmPos = new HmPos(30.190879, 120.186773);
+		initSetting();
 	}
+
+	protected abstract void initSetting();
 }
