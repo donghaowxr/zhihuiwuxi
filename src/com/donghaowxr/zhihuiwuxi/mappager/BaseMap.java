@@ -31,7 +31,7 @@ public abstract class BaseMap extends BaseMapPager {
 	}
 
 	@Override
-	public void initData() {
+	public final void initData() {
 		MainActivity activity = (MainActivity) mActivity;
 		activity.setOnMapStateListener(new OnMapState() {
 			@Override

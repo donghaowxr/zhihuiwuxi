@@ -373,7 +373,7 @@ int layout fragment_screen 0x7f030008
 int layout fragment_video 0x7f030009
 int layout item_anim_sel 0x7f03000a
 int layout item_leftmenu 0x7f03000b
-int layout item_pot 0x7f03000c
+int layout item_pop 0x7f03000c
 int layout left_menu 0x7f03000d
 int layout list_anim_header 0x7f03000e
 int layout list_anim_item 0x7f03000f

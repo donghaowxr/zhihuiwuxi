@@ -759,7 +759,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int fragment_video=0x7f030009;
         public static final int item_anim_sel=0x7f03000a;
         public static final int item_leftmenu=0x7f03000b;
-        public static final int item_pot=0x7f03000c;
+        public static final int item_pop=0x7f03000c;
         public static final int left_menu=0x7f03000d;
         public static final int list_anim_header=0x7f03000e;
         public static final int list_anim_item=0x7f03000f;
