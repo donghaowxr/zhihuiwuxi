@@ -4,6 +4,7 @@ import java.util.List;
 
 import android.app.Activity;
 import android.util.Log;
+import android.view.View;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
@@ -33,11 +34,12 @@ public class DingWeiPager extends BaseMap {
 
 	@Override
 	protected void initSetting() {
+		llSearch.setVisibility(View.GONE);
 		mLocationClient = new LocationClient(mActivity); // 声明LocationClient类
 		mLocationClient.registerLocationListener(myListener); // 注册监听函数
 		initLocation();
 		mBaiduMap.setMyLocationEnabled(true);
-		MyLocationConfiguration.LocationMode mode=MyLocationConfiguration.LocationMode.COMPASS;//设置显示模式
+		MyLocationConfiguration.LocationMode mode = MyLocationConfiguration.LocationMode.COMPASS;// 设置显示模式
 		setMyLocationConfiguration(mode);
 		mLocationClient.start();
 		MainActivity activity = (MainActivity) mActivity;
@@ -51,14 +53,24 @@ public class DingWeiPager extends BaseMap {
 		});
 	}
 
+	public void stopLocation() {
+		if (mLocationClient != null) {
+			mLocationClient.stop();
+		}
+	}
+
 	/**
 	 * 设置定位图层的配置
+	 * 
 	 * @param mode
 	 */
-	private void setMyLocationConfiguration(MyLocationConfiguration.LocationMode mode) {
-		boolean enableDirection=true;//设置允许显示方向
-		BitmapDescriptor customMarker=BitmapDescriptorFactory.fromResource(R.drawable.icon_geo);
-		MyLocationConfiguration config=new MyLocationConfiguration(mode, true, customMarker);
+	private void setMyLocationConfiguration(
+			MyLocationConfiguration.LocationMode mode) {
+		boolean enableDirection = true;// 设置允许显示方向
+		BitmapDescriptor customMarker = BitmapDescriptorFactory
+				.fromResource(R.drawable.icon_geo);
+		MyLocationConfiguration config = new MyLocationConfiguration(mode,
+				true, customMarker);
 		mBaiduMap.setMyLocationConfigeration(config);
 	}
 
@@ -83,18 +95,19 @@ public class DingWeiPager extends BaseMap {
 
 		@Override
 		public void onReceiveLocation(BDLocation location) {
-			if (location!=null) {
-				MyLocationData.Builder builder=new MyLocationData.Builder();
+			if (location != null) {
+				MyLocationData.Builder builder = new MyLocationData.Builder();
 				builder.accuracy(location.getRadius());
 				builder.direction(location.getDirection());
 				builder.latitude(location.getLatitude());
 				builder.longitude(location.getLongitude());
-				MyLocationData locationData=builder.build();
+				MyLocationData locationData = builder.build();
 				mBaiduMap.setMyLocationData(locationData);
-				MapStatusUpdate zoonMapStatusUpdate = MapStatusUpdateFactory.zoomTo(18);
+				MapStatusUpdate zoonMapStatusUpdate = MapStatusUpdateFactory
+						.zoomTo(18);
 				mBaiduMap.setMapStatus(zoonMapStatusUpdate);
 			}
-			
+
 			// Receive Location
 			StringBuffer sb = new StringBuffer(256);
 			sb.append("time : ");

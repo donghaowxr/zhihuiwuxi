@@ -6,6 +6,7 @@ import com.donghaowxr.zhihuiwuxi.MainActivity;
 import com.donghaowxr.zhihuiwuxi.domain.MapMenu;
 import com.donghaowxr.zhihuiwuxi.fragment.LeftMenuFragment;
 import com.donghaowxr.zhihuiwuxi.global.GlobalConfig;
+import com.donghaowxr.zhihuiwuxi.mappager.BaseMap;
 import com.donghaowxr.zhihuiwuxi.mappager.BaseMapPager;
 import com.donghaowxr.zhihuiwuxi.mappager.DingWeiPager;
 import com.donghaowxr.zhihuiwuxi.mappager.FuJinPager;
@@ -40,8 +41,9 @@ public class GovPager extends BasePager {
 		String cache = CacheUtils.getCache(GlobalConfig.MAP_URL, mActivity, "");
 		if (!TextUtils.isEmpty(cache)) {
 			processData(cache);
+		}else {
+			getDataFromServer();
 		}
-		getDataFromServer();
 	}
 
 	/**
@@ -94,5 +96,21 @@ public class GovPager extends BasePager {
 		flContent.removeAllViews();
 		flContent.addView(view);
 		mBaseMapPager.initData();
+	}
+	
+	public DingWeiPager getDingWeiPager(){
+		if (mBaseMapPagers!=null) {
+			return (DingWeiPager) mBaseMapPagers.get(0);
+		}else {
+			return null;
+		}
+	}
+	
+	public FuJinPager getFuJinPager(){
+		if (mBaseMapPagers!=null) {
+			return (FuJinPager) mBaseMapPagers.get(1);
+		}else {
+			return null;
+		}
 	}
 }

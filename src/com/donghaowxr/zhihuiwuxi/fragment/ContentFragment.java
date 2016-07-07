@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import com.donghaowxr.zhihuiwuxi.MainActivity;
 import com.donghaowxr.zhihuiwuxi.R;
+import com.donghaowxr.zhihuiwuxi.mappager.DingWeiPager;
+import com.donghaowxr.zhihuiwuxi.mappager.FuJinPager;
 import com.donghaowxr.zhihuiwuxi.pager.BasePager;
 import com.donghaowxr.zhihuiwuxi.pager.GovPager;
 import com.donghaowxr.zhihuiwuxi.pager.HomePager;
@@ -52,18 +54,23 @@ public class ContentFragment extends BaseFragment {
 			public void onCheckedChanged(RadioGroup group, int checkedId) {
 				switch (checkedId) {
 				case R.id.rb_Home:
+					pauseMap();
 					mViewPager.setCurrentItem(0, false);//参数2:不加入滑动效果动画
 					break;
 				case R.id.rb_News:
+					pauseMap();
 					mViewPager.setCurrentItem(1, false);
 					break;
 				case R.id.rb_Smart:
+					pauseMap();
 					mViewPager.setCurrentItem(2, false);
 					break;
 				case R.id.rb_Gov:
+					resumeMap();
 					mViewPager.setCurrentItem(3, false);
 					break;
 				case R.id.rb_Setting:
+					pauseMap();
 					mViewPager.setCurrentItem(4, false);
 					break;
 				}
@@ -152,5 +159,36 @@ public class ContentFragment extends BaseFragment {
 	public GovPager getGovPager(){
 		GovPager pager=(GovPager) mPagers.get(3);
 		return pager;
+	}
+	
+	public void destoryMap(){
+		GovPager govPager=getGovPager();
+		DingWeiPager dingWeiPager=govPager.getDingWeiPager();
+		if (dingWeiPager!=null) {
+			dingWeiPager.mapDestory();
+		}
+		FuJinPager fuJinPager=govPager.getFuJinPager();
+		if (fuJinPager!=null) {
+			fuJinPager.mapDestory();
+		}
+	}
+	public void resumeMap(){
+		GovPager govPager=getGovPager();
+		DingWeiPager dingWeiPager=govPager.getDingWeiPager();
+		if (dingWeiPager!=null) {
+			dingWeiPager.mapResume();
+		}
+	}
+	public void pauseMap(){
+		GovPager govPager=getGovPager();
+		DingWeiPager dingWeiPager=govPager.getDingWeiPager();
+		if (dingWeiPager!=null) {
+			dingWeiPager.stopLocation();
+			dingWeiPager.mapPause();
+		}
+		FuJinPager fuJinPager=govPager.getFuJinPager();
+		if (fuJinPager!=null) {
+			fuJinPager.mapPause();
+		}
 	}
 }

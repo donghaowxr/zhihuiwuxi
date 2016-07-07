@@ -10,7 +10,6 @@ public class FuJinPager extends BaseMap {
 
 	@Override
 	protected void initSetting() {
-		// TODO Auto-generated method stub
 		
 	}
 
