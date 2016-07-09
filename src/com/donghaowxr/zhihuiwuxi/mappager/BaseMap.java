@@ -21,13 +21,10 @@ public abstract class BaseMap extends BaseMapPager {
 	protected MapView mMapView;
 	protected BaiduMap mBaiduMap;
 	protected HmPos hmPos;
-	protected EditText etCity;
 	protected LinearLayout llSearch;
-	protected EditText etLocal;
 	protected Button btnSearchLocal;
-	protected EditText etBusStart;
-	protected EditText etBusStop;
 	protected Button btnSearchBus;
+	protected View view;
 
 	public BaseMap(Activity activity) {
 		super(activity);
@@ -35,17 +32,12 @@ public abstract class BaseMap extends BaseMapPager {
 
 	@Override
 	public View initView() {
-		View view = View.inflate(mActivity, R.layout.page_map, null);
+		view = View.inflate(mActivity, R.layout.page_map, null);
 		if (mMapView == null) {
 			mMapView = (MapView) view.findViewById(R.id.bmapView);
 		}
-
 		llSearch = (LinearLayout) view.findViewById(R.id.ll_search);
-		etCity = (EditText) view.findViewById(R.id.et_city);
-		etLocal = (EditText) view.findViewById(R.id.et_local);
 		btnSearchLocal = (Button) view.findViewById(R.id.btn_search_local);
-		etBusStart = (EditText) view.findViewById(R.id.et_bus_start);
-		etBusStop = (EditText) view.findViewById(R.id.et_bus_stop);
 		btnSearchBus = (Button) view.findViewById(R.id.btn_search_bus);
 		return view;
 	}
