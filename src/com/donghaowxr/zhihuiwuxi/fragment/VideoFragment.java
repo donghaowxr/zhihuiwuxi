@@ -235,9 +235,9 @@ public class VideoFragment extends BaseFragment implements OnClickListener {
 				mCacheStufferAdapter);
 		mContext.setMaximumLines(maxLinesPair);
 		mContext.preventOverlapping(overlappingEnablePair);// 设置防止弹幕重叠，null为允许重叠
-		// mParser = createParser(this.getResources().openRawResource(
-		// R.raw.comments));
-		mParser = createParser(null);
+		mParser = createParser(this.getResources().openRawResource(
+				R.raw.comments));
+//		mParser = createParser(null);
 		mDanmakuView
 				.setCallback(new master.flame.danmaku.controller.DrawHandler.Callback() {
 					@Override
