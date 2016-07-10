@@ -5,6 +5,8 @@ import com.donghaowxr.zhihuiwuxi.MainActivity;
 import com.donghaowxr.zhihuiwuxi.R;
 import com.donghaowxr.zhihuiwuxi.domain.MapMenu.MapData;
 import com.donghaowxr.zhihuiwuxi.domain.NewsMenu.DataArray;
+import com.donghaowxr.zhihuiwuxi.mappager.DingWeiPager;
+import com.donghaowxr.zhihuiwuxi.mappager.FuJinPager;
 import com.donghaowxr.zhihuiwuxi.pager.GovPager;
 import com.donghaowxr.zhihuiwuxi.pager.NewsPager;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
@@ -98,7 +100,11 @@ public class LeftMenuFragment extends BaseFragment {
 		MainActivity activity = (MainActivity) mActivity;
 		ContentFragment contentFragment = activity.getContentFragment();
 		GovPager pager = contentFragment.getGovPager();
+		DingWeiPager dingWeiPager=pager.getDingWeiPager();
 		pager.setCurrentPager(position);
+		if (position==1) {
+			dingWeiPager.stopLocation();
+		}
 	}
 
 	/**
