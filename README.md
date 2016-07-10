@@ -1,8 +1,7 @@
 # 趣味
-练手用的趣味app项目
+一款集和新闻，语音聊天，弹幕动画，地图功能的趣味app项目
 
 程序启动页：
-
 
 ![](https://raw.githubusercontent.com/donghaowxr/zhihuiwuxi/master/screenshot/splash.jpeg)
 
