@@ -10,6 +10,12 @@
 
 ![](https://raw.githubusercontent.com/donghaowxr/zhihuiwuxi/master/screenshot/guide.jpeg)
 
+新闻页:
+![](https://raw.githubusercontent.com/donghaowxr/zhihuiwuxi/master/screenshot/news.jpeg)
+![](https://raw.githubusercontent.com/donghaowxr/zhihuiwuxi/master/screenshot/newsDetail.jpeg)
+![](https://raw.githubusercontent.com/donghaowxr/zhihuiwuxi/master/screenshot/slidingmenu.jpeg)
+
+
 # SlidingMenu
 侧边栏开源控件
 # xUtils
