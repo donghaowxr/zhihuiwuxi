@@ -100,9 +100,9 @@ public class LeftMenuFragment extends BaseFragment {
 		MainActivity activity = (MainActivity) mActivity;
 		ContentFragment contentFragment = activity.getContentFragment();
 		GovPager pager = contentFragment.getGovPager();
-		DingWeiPager dingWeiPager=pager.getDingWeiPager();
+		DingWeiPager dingWeiPager = pager.getDingWeiPager();
 		pager.setCurrentPager(position);
-		if (position==1) {
+		if (position == 1) {
 			dingWeiPager.stopLocation();
 		}
 	}

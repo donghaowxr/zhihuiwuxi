@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.donghaowxr.zhihuiwuxi.MainActivity;
 import com.donghaowxr.zhihuiwuxi.domain.NewsMenu;
+import com.donghaowxr.zhihuiwuxi.fragment.ContentFragment;
 import com.donghaowxr.zhihuiwuxi.fragment.LeftMenuFragment;
 import com.donghaowxr.zhihuiwuxi.global.GlobalConfig;
 import com.donghaowxr.zhihuiwuxi.menupager.BaseMenuDetailPager;
@@ -96,7 +97,12 @@ public class NewsPager extends BasePager {
 		mMenuDetailPagers.add(new TopicMenuDetailPager(mActivity));
 		mMenuDetailPagers.add(new PhotosMenuDetailPager(mActivity,btnPhoto));
 		mMenuDetailPagers.add(new InteractMenuDetailPager(mActivity));
-		setCurrentDetailPager(0);
+		MainActivity mainActivity=(MainActivity) mActivity;
+		ContentFragment contentFragment=mainActivity.getContentFragment();
+		BasePager basePager=contentFragment.getBasePager();
+		if (basePager instanceof NewsPager) {
+			setCurrentDetailPager(0);
+		}
 	}
 	
 	/**
