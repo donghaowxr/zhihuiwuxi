@@ -6,6 +6,9 @@
 
 ![](https://raw.githubusercontent.com/donghaowxr/zhihuiwuxi/master/screenshot/splash.jpeg)
 
+新手引导页:
+
+![](https://raw.githubusercontent.com/donghaowxr/zhihuiwuxi/master/screenshot/guide.jpeg)
 
 # SlidingMenu
 侧边栏开源控件
